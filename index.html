@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="temp-chart.css" />
+  <link href="" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="card">
+    <div class="card-header">
+      <div class="search">
+        <span class="search-input">Berlin</span>
+        <div class="vertical-line-bg">
+          <div class="vertical-line"></div>
+        </div>
+        <button class="search-btn" id="search-btn">
+          <svg viewBox="0 0 57 57" fill="none" xmlns="">
+            <path
+              d="M36.5905 43.2803C33.0951 45.612 29.0303 46.9471 24.833 47.1419C20.6358 47.3368 16.4647 46.3842 12.7683 44.3864C9.0718 42.3887 5.98967 39.4213 3.85311 35.8033C1.71656 32.1852 0.606385 28.0533 0.641925 23.8517C0.677466 19.6501 1.85739 15.5376 4.05484 11.9562C6.25229 8.37483 9.38417 5.46003 13.1139 3.52507C16.8436 1.59011 21.0302 0.708173 25.2236 0.974039C29.4169 1.23991 33.4585 2.64353 36.914 5.03404C39.3912 6.71097 41.5094 8.86461 43.1451 11.3692C44.7807 13.8738 45.901 16.6792 46.4404 19.6215C47.6269 25.5486 46.4163 31.7042 43.0736 36.7405C43.2692 36.9489 43.4392 37.1408 43.622 37.3236C47.2605 40.9645 50.9014 44.6048 54.5448 48.2445C55.2616 48.9266 55.7689 49.7991 56.007 50.7596C56.2591 51.9229 56.0537 53.1387 55.4332 54.1546C54.8128 55.1705 53.8251 55.9085 52.675 56.2155C51.9297 56.4235 51.1435 56.437 50.3915 56.2546C49.6395 56.0722 48.9468 55.7 48.3797 55.1736C48.1786 55.0018 47.9977 54.8081 47.8094 54.6253C44.2197 51.0355 40.6311 47.4452 37.0438 43.8542C36.8823 43.6714 36.731 43.4798 36.5905 43.2803ZM23.7961 39.442C26.8461 39.4387 29.8266 38.5308 32.3606 36.8332C34.8945 35.1357 36.868 32.7246 38.0314 29.9052C39.1947 27.0857 39.4956 23.9845 38.8961 20.994C38.2965 18.0035 36.8234 15.258 34.6631 13.1049C32.5029 10.9518 29.7525 9.4878 26.76 8.89818C23.7675 8.30856 20.6674 8.61979 17.8518 9.7925C15.0362 10.9652 12.6317 12.9467 10.9426 15.4863C9.25339 18.0258 8.35545 21.0094 8.36232 24.0594C8.37393 28.143 10.0044 32.0553 12.8962 34.9385C15.788 37.8218 19.7052 39.4406 23.7888 39.4401L23.7961 39.442Z"
+              fill="white" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="headline-container">
+      <div class="headline">
+        <div class="question">Ist das Wetter noch normmaloder schon der Klimawandel?</div>
+        <div class="today">
+          <img id="tempImage" src="" />
+          <span class="subline"><strong><span id="temperature"></span> </strong><span> Grad </span> <span
+              id="comparison"></span></span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div id="tempChart"></div>
+      <!-- Bottom legend-->
+      <div class="bottom-legend">
+        <div class="swatches-container">
+          <div class="swatch">
+            <div class="swatch-red"></div>
+            <div class="swatch-label">Temperatur dieses Jahr</div>
+            <div class="swatch-blue">
+            </div>
+            <div class="swatch-label">Ø Tageshöchsttemperatur 1993-2023</div>
+          </div>
+        </div>
+        <div class="info-icon">
+          <button class="info-btn" id="info-btn" aria-label="More information">
+            <svg width="18" height="18" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M33.4995 17.0505C33.5669 25.3855 26.9252 33.503 16.9061 33.4755C7.71989 33.451 0.502575 26.1571 0.499513 17.0046C0.496451 7.72035 7.85156 0.454041 17.0286 0.499972C27.1243 0.548966 33.6404 8.80739 33.4995 17.0505ZM31.1264 16.9617C31.252 9.10135 24.5123 2.85165 17.05 2.8394C9.45915 2.83021 2.82669 9.09828 2.842 17.0138C2.85731 24.9353 9.52345 31.1759 17.1052 31.1361C24.5338 31.0993 31.2795 24.8557 31.1295 16.9586L31.1264 16.9617Z"
+                fill="#B5B5B5" />
+              <path
+                d="M15.9232 27.0359C14.1227 27.0757 12.9499 25.6182 13.3572 23.7228C13.7124 22.0815 14.1747 20.4617 14.5973 18.8357C14.827 17.9508 15.0995 17.075 15.3138 16.187C15.5037 15.3939 15.3536 15.2286 14.5024 15.1489C14.4503 15.1428 14.4013 15.1489 14.3493 15.1489C13.9604 15.1336 13.4337 15.2714 13.4337 14.6805C13.4337 14.5273 13.9635 14.2793 14.2727 14.2334C15.6844 14.0252 17.1021 13.869 18.5198 13.7006C19.316 13.6057 19.5762 13.8476 19.3833 14.6437C18.9393 16.4718 18.4341 18.2876 17.9564 20.1095C17.7114 21.0465 17.4604 21.9804 17.246 22.9236C17.145 23.3645 17.0072 23.9463 17.5492 24.1239C17.9166 24.2433 18.4341 24.1025 18.8199 23.931C19.1721 23.7718 19.4262 23.4012 19.7508 23.1593C19.8427 23.092 20.0662 23.0981 20.1642 23.1655C20.2683 23.2359 20.3142 23.4135 20.3479 23.5544C20.3693 23.6462 20.3265 23.7564 20.2928 23.8514C19.7508 25.3916 17.543 26.9992 15.9263 27.0359H15.9232Z"
+                fill="#B5B5B5" />
+              <path
+                d="M18.333 11.551C17.0409 11.5296 16.0212 10.4854 16.0518 9.21771C16.0824 7.96532 17.1756 6.92115 18.4341 6.94564C19.714 6.97014 20.6786 8.00206 20.6633 9.32182C20.6449 10.6691 19.6987 11.5755 18.333 11.551Z"
+                fill="#B5B5B5" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- Modal content -->
+      <div id="search-modal" class="modal">
+        <div class="modal-content">
+          <div class="modal-items">
+            <text class="modal-title">Suchen Sie Ihren Standort</text>
+            <input class="modal-input" placeholder="PLZ / Ort">
+            <div class="autocomplete-suggestions">
+              <!-- Dynamically populated suggestions -->
+            </div>
+            <div class="modal-text">
+              <button class="modal-text-close">ABBRECHEN</button>
+              <button class="modal-text-search" id="text-search">SUCHEN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Info content -->
+    <div id="overlay"></div>
+    <div id="info-modal" class="info">
+      <div class="info-items">
+        <text class="info-title">Information</text>
+        <text class="info-details">Die historischen Wetterdaten stammen aus dem Archiv des Deutschen Wetterdienstes DWD. Sie kommen von etwa 400 aktiven und über 900 nicht mehr aktiven Messstationen aus ganz Deutschland. Da nicht jede Station die kompletten historischen Daten bereitstellt, werden für den Zeitraum der letzten 100 Jahre auch Stationen in der Nähe für die Ergebnisse herangezogen.
+          <br/>
+          <br/>
+          <br/>
+          <br/> 
+          Für diese Grafik [Berlin] wurden Daten der folgenden Stationen verwendet:
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+        </text>
+      </div>
+    </div>
+    <script src="d3.v7.min.js"></script>
+    <script src="temp-chart.js"></script>
+    <script src="index.js"></script>
+    <script src="api2.js"></script>
+</body>

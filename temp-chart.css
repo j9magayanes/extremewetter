@@ -1,0 +1,131 @@
+.temp-chart {
+  --clr-series-1: var(--clr-red);
+  --clr-series-2: var(--clr-navy);
+  --clr-fill-series-1: var(--clr-red-light);
+  --clr-fill-series-2: var(--clr-navy-light);
+  --clr-background: var(--clr-gray-light);
+  --gap: 0.75em;
+  font-size: var(--fs-base);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  font-family: "Gotham Condensed Book";
+  position: relative;
+}
+
+.temp-chart .y-axis-svg {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.temp-chart .scroll-container {
+  overflow-x: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.temp-chart .main-svg {
+  display: block;
+}
+
+.temp-chart .y-axis-g {
+  --font-size: 1em;
+  --color: var(--clr-gray);
+  --opacity: 0.7;
+  font-size: var(--font-size);
+  color: var(--color);
+}
+
+.temp-chart .y-axis-g .tick {
+  opacity: var(--opacity);
+}
+
+.temp-chart .y-axis-g .bg-rect {
+  fill: var(--clr-background);
+}
+
+.temp-chart .x-axis-g {
+  color: var(--clr-gray);
+}
+
+.temp-chart .x-axis-g .day-dot-circle {
+  fill: currentColor;
+}
+
+.temp-chart .x-axis-g .day-labels-line {
+  stroke: currentColor;
+  stroke-linecap: round;
+}
+
+.temp-chart .x-axis-g .day-label-text {
+  color: var(--clr-white);
+}
+
+.temp-chart .swatches-container {
+  --font-size: 1.25em;
+  --gap-x: 1em;
+  --swatch-width: 1.5em;
+  --swatch-height: 2px;
+  font-size: var(--font-size);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0 var(--gap-x);
+}
+
+.temp-chart .swatch {
+  display: flex;
+  align-items: center;
+}
+
+.temp-chart .swatch-swatch {
+  width: var(--swatch-width);
+  height: var(--swatch-height);
+  margin-right: 0.25em;
+}
+
+.temp-chart .tip {
+  --font-size: 1.25em;
+  --icon-size: 0.6em;
+  font-size: var(--font-size);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  gap: 0.2em;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.1s, visibility 0.1s;
+}
+
+.temp-chart .tip.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.temp-chart .tip img {
+  display: block;
+  width: var(--icon-size);
+}
+
+.point-circle {
+  stroke: var(--clr-red); 
+  stroke-width: 1.83px;
+  z-index: 4;
+}
+
+.arrow-svg-left {
+  padding-top: 4px;
+}
+
+.arrow-svg-right {
+  padding-top: 4px;
+  padding-left: 3px;
+}
