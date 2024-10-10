@@ -739,7 +739,6 @@ function tempChart({ element, data }) {
      
   }
 
-
   // Render points on Focus /Click
   function renderFocus() {
     yAxisSvg
