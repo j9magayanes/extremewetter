@@ -9,13 +9,13 @@
 
 <body>
   <div class="card">
-    <div class="card-header">
+    <div class="search-container">
       <div class="search">
         <span class="search-input">Berlin</span>
         <div class="vertical-line-bg">
           <div class="vertical-line"></div>
         </div>
-        <button class="search-btn" id="search-btn">
+        <button class="search-button" id="search-button">
           <svg viewBox="0 0 57 57" fill="none" xmlns="">
             <path
               d="M36.5905 43.2803C33.0951 45.612 29.0303 46.9471 24.833 47.1419C20.6358 47.3368 16.4647 46.3842 12.7683 44.3864C9.0718 42.3887 5.98967 39.4213 3.85311 35.8033C1.71656 32.1852 0.606385 28.0533 0.641925 23.8517C0.677466 19.6501 1.85739 15.5376 4.05484 11.9562C6.25229 8.37483 9.38417 5.46003 13.1139 3.52507C16.8436 1.59011 21.0302 0.708173 25.2236 0.974039C29.4169 1.23991 33.4585 2.64353 36.914 5.03404C39.3912 6.71097 41.5094 8.86461 43.1451 11.3692C44.7807 13.8738 45.901 16.6792 46.4404 19.6215C47.6269 25.5486 46.4163 31.7042 43.0736 36.7405C43.2692 36.9489 43.4392 37.1408 43.622 37.3236C47.2605 40.9645 50.9014 44.6048 54.5448 48.2445C55.2616 48.9266 55.7689 49.7991 56.007 50.7596C56.2591 51.9229 56.0537 53.1387 55.4332 54.1546C54.8128 55.1705 53.8251 55.9085 52.675 56.2155C51.9297 56.4235 51.1435 56.437 50.3915 56.2546C49.6395 56.0722 48.9468 55.7 48.3797 55.1736C48.1786 55.0018 47.9977 54.8081 47.8094 54.6253C44.2197 51.0355 40.6311 47.4452 37.0438 43.8542C36.8823 43.6714 36.731 43.4798 36.5905 43.2803ZM23.7961 39.442C26.8461 39.4387 29.8266 38.5308 32.3606 36.8332C34.8945 35.1357 36.868 32.7246 38.0314 29.9052C39.1947 27.0857 39.4956 23.9845 38.8961 20.994C38.2965 18.0035 36.8234 15.258 34.6631 13.1049C32.5029 10.9518 29.7525 9.4878 26.76 8.89818C23.7675 8.30856 20.6674 8.61979 17.8518 9.7925C15.0362 10.9652 12.6317 12.9467 10.9426 15.4863C9.25339 18.0258 8.35545 21.0094 8.36232 24.0594C8.37393 28.143 10.0044 32.0553 12.8962 34.9385C15.788 37.8218 19.7052 39.4406 23.7888 39.4401L23.7961 39.442Z"
@@ -24,7 +24,6 @@
         </button>
       </div>
     </div>
-
     <div class="headline-container">
       <div class="headline">
         <div class="question">Ist das Wetter noch normmaloder schon der Klimawandel?</div>
@@ -65,22 +64,32 @@
         </div>
       </div>
       <!-- Modal content -->
-      <div id="search-modal" class="modal">
-        <div class="modal-content">
-          <div class="modal-items">
-            <text class="modal-title">Suchen Sie Ihren Standort</text>
-            <input class="modal-input" placeholder="PLZ / Ort">
-            <div class="autocomplete-suggestions">
-              <!-- Dynamically populated suggestions -->
+      <div class="search-page-container" id="search-page-container">
+        <p class="search-page-header">Suchen Sie Ihren Standort</p>
+        <form id="city-search-form" method="GET" autocomplete="off">
+          <fieldset class="input-field-container">
+            <legend class="input-legend">PLZ / Ort</legend>
+            <div class="inner-input">
+              <img class="input-magnifying" src="./assets/magnifying_gray.svg" />
+              <input type="text" value="" 
+                name="plz-ort"   
+                id="city-search-input" 
+                class="input-field" 
+                placeholder="PLZ / Ort" 
+              />
+              <div class="close">&#x2715</div>
             </div>
-            <div class="modal-text">
-              <button class="modal-text-close">ABBRECHEN</button>
-              <button class="modal-text-search" id="text-search">SUCHEN</button>
+            <div class="suggestions-wrapper">
+              <div id="suggestions"></div>
             </div>
+            <div class="input-warning">Bitte überprüfen Sie Ihre Eingabe.</div>
+          </fieldset>
+          <div class="search-btns-container">
+            <button class="cancel-btn" type="button">ABBRECHEN</button>
+            <button type="submit" class="search-btn"  id="search-btn" type="button">SUCHEN</button>
           </div>
-        </div>
+        </form>
       </div>
-    </div>
     <!-- Info content -->
     <div id="overlay"></div>
     <div id="info-modal" class="info">
@@ -88,15 +97,15 @@
         <text class="info-title">Information</text>
         <text class="info-details">Die historischen Wetterdaten stammen aus dem Archiv des Deutschen Wetterdienstes DWD. Sie kommen von etwa 400 aktiven und über 900 nicht mehr aktiven Messstationen aus ganz Deutschland. Da nicht jede Station die kompletten historischen Daten bereitstellt, werden für den Zeitraum der letzten 100 Jahre auch Stationen in der Nähe für die Ergebnisse herangezogen.
           <br/>
-          <br/>
-          <br/>
-          <br/> 
           Für diese Grafik [Berlin] wurden Daten der folgenden Stationen verwendet:
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
+          <br/><br/>"stations":    <br/>  <br/> {
+    "Berlin Brandenburg (id: 427, distanceInKm: 4.0),    <br/>results:": 24644,
+    "Berlin-Adlershof (id: 395, distanceInKm: 4.1),    <br/>results:": 2010,
+    "Berlin-Treptow (id: 434, distanceInKm: 6.7),    <br/>results:": 1643,
+    "Berlin-Lichterfelde (Süd) (id: 417, distanceInKm: 16.3),    <br/>results:": 3623,
+    "Berlin-Dahlem (LFAG) (id: 402, distanceInKm: 17.2),    <br/>results:": 4217,
+    "Potsdam (Säkularstation) (id: 3988, distanceInKm: 32.9),    <br/>results:": 195
+     <br/> },
           <br/>
         </text>
       </div>
