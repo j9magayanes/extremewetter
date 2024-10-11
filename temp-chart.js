@@ -651,7 +651,7 @@ function tempChart({ element, data }) {
         enter
           .append('text')
           .attr('class', 'text-today')
-          .attr('dy', '.9em')
+          .attr('dy', '.35em')
           .style('fill',  'var(--clr-series-1)')
           .style('stroke', 'white')              
           .style('stroke-width', 1.5)            
@@ -689,7 +689,7 @@ function tempChart({ element, data }) {
           const textWidth = 30;  
           const svgWidth = scrollContainer.node().clientWidth; 
           const availableSpace = svgWidth - xPos;
-          const adjustedX = availableSpace < textWidth ? x(d[0]) - textWidth - 6 : xPos;
+          const adjustedX = availableSpace < textWidth ? x(d[0]) - textWidth - 6 : xPos + 10;
       
           return `translate(${adjustedX }, ${yPos})`;
       }),
