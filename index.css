@@ -170,9 +170,8 @@ body {
 }
 
 .question {
-  --font-size: calc(var(--fs-base) * 2.25);
   --max-width: 35ch;
-  font-size: var(--font-size);
+  font-size: 30px;
   max-width: var(--max-width);
   line-height: 1;
   text-align: center;
@@ -198,13 +197,12 @@ body {
   color: var(--clr-white);
   background-color: var(--clr-red);
   line-height: 1;
-  left: 50%;
+  /* left: 50%; */
   text-align: center;
   display: flex;
   align-items: center;
   gap: var(--gap);
-
-  margin-inline: auto;
+ margin-inline: auto;
 }
 
 .today > svg {
@@ -808,21 +806,34 @@ ul li {
 
 
 @media (max-width: 656px) {
+ .headline {
+    top: 60px;
+} 
+
+.question{
+  font-size:  calc((45/ 656) * 100vw);
+}
+
+/*
 .question{
     left: 0; 
-    top: 12vh;
+    font-size:  calc((45/ 656) * 100vw);
     position: absolute; 
-    padding-top: 0.25rem;
     padding-left: 0.25rem;  
   }
-  
 
+  .today{
+
+    position: absolute; 
+
+  } */
   .card-body {
-    padding: 3.75em 3em;
+    padding: calc((140/ 656) * 100vw) 3em;
     scale: 0.98;
-    gap: 0
+    gap: 0;
   }
 
+  
  /* 
   .temp-chart {
     gap: 0;
