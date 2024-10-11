@@ -69,7 +69,7 @@ body {
 
 .card-body {
   --padding-x: 2em;
-  --padding-y: 0.75em;
+  --padding-y: 3.75em;
   --gap: 0.75em;
   padding: var(--padding-y) var(--padding-x);
   display: flex;
@@ -166,12 +166,12 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  top: calc(14px + ((992px - 100vw) * 0.05));
+  top: 10px;
 }
 
 .question {
   --font-size: calc(var(--fs-base) * 2.25);
-  --max-width: 24ch;
+  --max-width: 35ch;
   font-size: var(--font-size);
   max-width: var(--max-width);
   line-height: 1;
@@ -462,7 +462,6 @@ body {
   background-color: rgba(0, 0, 0, 0.5); 
   z-index: 4; 
 }
-
 
 .search-page-container {
   margin: 0;

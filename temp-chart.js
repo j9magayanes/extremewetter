@@ -29,10 +29,8 @@ function tempChart({ element, data }) {
   const xAccessor = (d) => d.date;
   const y1Accessor = (d) =>
     Number.isFinite(d.maxMaxThisYear) ? d.maxMaxThisYear : undefined;
-  const y2Accessor = (d) => (Number.isFinite(d.maxMax) ? d.maxMax : undefined);
-  const y0Accessor = (d) => (Number.isFinite(d.minMin) ? d.minMin : undefined);
-  const y3Accessor = (d) => (Number.isFinite(d.avgMax) ? d.avgMax : undefined);
-  const y4Accessor = (d) => (Number.isFinite(d.avgMin) ? d.avgMin : undefined);
+  const y2Accessor = (d) => (Number.isFinite(d.avgMax) ? d.avgMax : undefined);
+  const y0Accessor = (d) => (Number.isFinite(d.avgMin) ? d.avgMin : undefined);
 
 
 
@@ -130,7 +128,7 @@ function tempChart({ element, data }) {
       );
       yMax += padding;
       console.log(`${yMin},${yMax} `)
-      return [yMin, yMax];
+      return [0, yMax];
     }
     if (!!noScrollWidth) resized();
   }
@@ -541,14 +539,14 @@ function tempChart({ element, data }) {
     x.domain([d3.min(pointsData, d => d[0]), d3.max(pointsData, d => d[0])]);
     // y.domain([d3.min(pointsData, d => d.data.minMin), d3.max(pointsData, d => d.data.maxMax)]);
 
-    // Find the lowest temperature point in pointsData
-    const lowestTempPoint = pointsData.reduce((lowest, current) => {
-      return current.data.minMin < lowest.data.minMin ? current : lowest;
+    // Find the averge max temperature point in pointsData
+    const averageMaxPoint = pointsData.reduce((max, current) => {
+      return current.data.avgMax < max.data.avgMax ? current : max;
     }, pointsData[0]);
 
     // Find the highest historical temperature point
     const highestTempPoint = pointsData.reduce((highest, current) => {
-      return current.data.maxMax > highest.data.maxMax ? current : highest;
+      return current.data.avgMax > highest.data.avgMax? current : highest;
     }, pointsData[0]);
 
     // Find the highest temperature for the current year (`maxMaxThisYear`)
@@ -561,7 +559,7 @@ function tempChart({ element, data }) {
       : highestTempPoint;
 
     // If no valid data is found, exit early (optional safeguard)
-    if (!lowestTempPoint) {
+    if (!averageMaxPoint) {
       console.warn('No valid data found for rendering.');
       return;
     }
@@ -586,8 +584,8 @@ function tempChart({ element, data }) {
 
 
     svg
-      .selectAll('.lowest-temp-circle')
-      .data([lowestTempPoint])
+      .selectAll('.highest-temp-circle')
+      .data([highestTempPoint])
       .join(
         (enter) =>
           enter
@@ -596,15 +594,15 @@ function tempChart({ element, data }) {
             .attr('r', focusDotSize)
             .style('z-index', 5)
             .attr('fill', 'var(--clr-series-2)')
-            .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.minMin)})`),
+            .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.avgMax)})`),
         (update) => update
-          .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.minMin)})`),
+          .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.avgMax)})`),
         (exit) => exit.remove()
       );
 
     svg
       .selectAll('.highest-temp-circle')
-      .data([overallHighestTempPoint])
+      .data([highestTempThisYearPoint])
       .join(
         (enter) =>
           enter
@@ -613,9 +611,9 @@ function tempChart({ element, data }) {
             .attr('r', focusDotSize)
             .style('z-index', 5)
             .attr('fill', 'var(--clr-series-1)')
-            .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.maxMax)})`),
+            .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.maxMaxThisYear)})`),
         (update) => update
-          .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.maxMax)})`),
+          .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.maxMaxThisYear)})`),
         (exit) => exit.remove()
       );
 
@@ -667,33 +665,30 @@ function tempChart({ element, data }) {
     (update) => update,
     (exit) => exit.remove();
         svg
-        .selectAll('.temp-minMin')
-        .data([lowestTempPoint]) 
+        .selectAll('.temp-avgMax')
+        .data([highestTempPoint]) 
         .join(
           (enter) =>
             enter
               .append('text')
-              .attr('class', 'temp-minMin')
+              .attr('class', 'temp-avgMax')
               .attr('dy', '.35em')
               .style('fill',  'var(--clr-series-2)')
               .text(d =>`${valueFormat(
-                d.data.minMin
+                d.data.avgMax
               )}°`), 
           (update) =>
             update
               .text(d =>`${valueFormat(
-                d.data.minMin
+                d.data.avgMax
               )}°`)
         )
         .attr('transform', (d) => {
           const xPos = x(d[0]) 
-          const yPos = y(d.data.minMin);
-      
+          const yPos = y(d.data.avgMax);
           const textWidth = 30;  
           const svgWidth = scrollContainer.node().clientWidth; 
           const availableSpace = svgWidth - xPos;
-      
-        
           const adjustedX = availableSpace < textWidth ? x(d[0]) - textWidth - 6 : xPos;
       
           return `translate(${adjustedX }, ${yPos})`;
@@ -701,27 +696,28 @@ function tempChart({ element, data }) {
         (update) => update,
         (exit) => exit.remove();
         svg
-        .selectAll('.temp-maxMax')
-        .data([highestTempPoint]) 
+        .selectAll('.temp-maxMaxThisYear')
+        .data([highestTempThisYearPoint]) 
         .join(
           (enter) =>
             enter
               .append('text')
-              .attr('class', 'temp-maxMax')
+              .attr('class', 'temp-maxMaxThisYear')
               .attr('dy', '.35em') 
               .style('fill',  'var(--clr-series-1)')
               .text(d =>`${valueFormat(
-              d.data.maxMax
+              d.data.maxMaxThisYear
             )}°`),
           (update) =>
             update
               .text(d =>`${valueFormat(
-                d.data.maxMax
+                d.data.maxMaxThisYear
               )}°`)
         )
         .attr('transform', (d) => {
           const xPos = x(d[0]);  
-          const yPos = y(d.data.maxMax);
+          const yPos = y(d.data.maxMaxThisYear
+          );
       
           // Calculate available space on the right
           const textWidth = 30;  
