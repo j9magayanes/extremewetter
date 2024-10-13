@@ -9,7 +9,7 @@ function tempChart({ element, data }) {
     totalDays;
 
   // Chart dimensions and style constants
-  const height = 200;
+  const height = 250;
   const focusDotSize = 4;
   const lineStrokeWidth = 2;
   const dayDotSize = 2;
@@ -128,7 +128,7 @@ function tempChart({ element, data }) {
       );
       yMax += padding;
       console.log(`${yMin},${yMax} `)
-      return [0, yMax];
+      return [0, 50];
     }
     if (!!noScrollWidth) resized();
   }

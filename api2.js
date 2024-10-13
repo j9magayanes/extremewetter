@@ -40,6 +40,69 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+// Get historical max temperatur for today's date
+async function getMaxTemp(lat, long) {
+  let dateToday = new Date();
+  let formattedDate = dateToday.toISOString().split("T")[0];
+  let url = `https://api.brightsky.dev/weather?lat=${lat}&lon=${long}&date=${formattedDate}`;
+  console.log(url)
+  const urlResponse = await fetch(url);
+  console.log(urlResponse)
+  //const urlResponse = await fetch('Berlin.json');
+  if (!urlResponse.ok) {
+    throw new Error(`An error occurred: ${urlResponse.statusText}`);
+  }
+  const result = await urlResponse.json();
+
+  let maxTemperature = -Infinity;
+  let minTemperature = Infinity;
+  let sumTemperature = 0;
+  let count = 0;
+
+  const currentHour = new Date().getUTCHours();
+
+  for (let i = 0; i < result.weather.length; i++) {
+    const weatherObj = result.weather[i];
+    const hour = parseInt(weatherObj.timestamp.substr(11, 2));
+
+    const localHour = (hour + 2) % 24;
+
+    if (localHour <= currentHour + 2) {
+      const temperature = weatherObj.temperature;
+      sumTemperature += temperature;
+      count++;
+      if (temperature > maxTemperature) {
+        maxTemperature = temperature;
+      }
+      if (temperature < minTemperature) {
+        minTemperature = temperature;
+      }
+    } else {
+      break;
+    }
+  }
+
+  const avgTemperature = count > 0 ? sumTemperature / count : null;
+
+  return { maxTemperature, avgTemperature };
+}
+
+// Fetch and display comparison data
+(async () => {
+  try {
+    let avgMaxTemp = await getMaxTemp(lat, lon);
+    let difference = parseFloat(
+      avgMaxTemp.avgTemperature - avgMaxTemp.maxTemperature
+    ).toFixed(2);
+    temperature.textContent = Math.abs(difference);
+    comparison.textContent = difference > 0 ? ` ${Math.abs(difference)} wärmer` : " kälter";
+    tempImage.src = `./assets/${difference > 0 ? "increase" : "decrease"}.png`;
+  } catch (error) {
+    console.error("Error fetching temperature data:", error);
+  }
+})();
+
+
 // Setup Search Form Event Listeners
 const setupSearchForm = () => {
   form.addEventListener("submit", submitForm);

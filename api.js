@@ -96,7 +96,7 @@ async function getMaxTemp(lat, long) {
     ).toFixed(2);
     temperature.textContent = Math.abs(difference);
     comparison.textContent = difference > 0 ? " wärmer" : " kälter";
-    tempImage.src = `./assets/${difference > 0 ? "increase" : "decrease"}.svg`;
+    tempImage.src = `./assets/${difference > 0 ? "increase" : "decrease"}.png`;
   } catch (error) {
     console.error("Error fetching temperature data:", error);
   }
