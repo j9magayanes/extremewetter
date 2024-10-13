@@ -133,7 +133,7 @@
 @media (max-width: 656px) { 
   .temp-chart {
     gap: 0;
-    top: 70px
+    top: 50px
   }
   
   .scroll-left {
