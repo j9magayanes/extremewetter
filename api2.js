@@ -12,7 +12,7 @@ let plzData;
 
 // DOM Elements
 const modal = document.getElementById("search-page-container");
-const searchButton = document.getElementById("search-button");
+const searchButton = document.querySelector(".search");
 const searchInput = document.querySelector(".search-input");
 const modalInput = document.getElementsByClassName("modal-input")[0];
 const overlay = document.getElementById("overlay");
@@ -119,7 +119,6 @@ const setupSearchForm = () => {
 
 // Handle Search Button Click
 searchButton.onclick = function () {
-  console.log("search");
   modal.style.display = "flex";
 };
 
