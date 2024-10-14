@@ -8,8 +8,16 @@ function tempChart({ element, data }) {
     pointsData,
     totalDays;
 
+    function updateHeight() {
+      const height = Math.min(200, window.innerWidth * 0.3); // Adjust height
+      // Apply the new height to the chart (or wherever necessary)
+      d3.select(element).select('svg').attr('height', height);
+    }
+    
+    window.addEventListener('resize', updateHeight);
+    
   // Chart dimensions and style constants
-  const height = 250;
+  const height = Math.min(200, window.innerWidth * 0.3); 
   const focusDotSize = 4;
   const lineStrokeWidth = 2;
   const dayDotSize = 2;

@@ -48,7 +48,7 @@
 
 html,
 body {
- max-height: 656px;
+ max-height: 327px;
 }
 
 body {
@@ -829,6 +829,15 @@ ul li {
 
 
 @media (max-width: 656px) {
+  body {
+    aspect-ratio: 1 / 1;  
+    width: 100vw;        
+    height: auto;     
+    max-width: 656px;         
+    max-height: 656px;        
+    overflow: hidden;  
+   }
+
  .headline {
     top: 42px;
     width: 650px;
