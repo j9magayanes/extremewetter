@@ -8,21 +8,6 @@ function tempChart({ element, data }) {
     pointsData,
     totalDays;
 
-    function getChartHeight() {
-      const maxWidth = 656; // The width at which the height is 250px
-      const maxHeight = 250; // Maximum height at maxWidth
-      const minHeight = 220; // Minimum height when viewport is greater than maxWidth
-      
-      if (window.innerWidth < maxWidth) {
-        // Calculate the height based on the viewport width proportionally
-        return (maxHeight / maxWidth) * window.innerWidth;
-      } else {
-        return minHeight;
-      }
-    }
-    
-    let height = getChartHeight(); // Set the initial height
-
   const focusDotSize = 4;
   const lineStrokeWidth = 2;
   const dayDotSize = 2;
@@ -45,6 +30,25 @@ function tempChart({ element, data }) {
   const y2Accessor = (d) => (Number.isFinite(d.avgMax) ? d.avgMax : undefined);
   const y0Accessor = (d) => (Number.isFinite(d.avgMin) ? d.avgMin : undefined);
 
+  // Function to calculate responsive height
+  function calculateHeight() {
+    const viewportWidth = window.innerWidth;
+
+    // Base height of 250px when viewport is 656px
+    let height = 250;
+
+    // Adjust height when width is less than 656px, scaling down
+    if (viewportWidth < 656) {
+      const minWidth = 400; // Minimum width where height starts decreasing
+      const minHeight = 220; // Minimum height allowed
+      height = Math.max(minHeight, (viewportWidth / 656) * 250);
+    }
+
+    return height;
+  }
+
+  // Initial render
+  const height = calculateHeight();
 
 
   // Formatting values for tooltip

@@ -44,7 +44,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 async function getMaxTemp(lat, long) {
   let dateToday = new Date();
   let formattedDate = dateToday.toISOString().split("T")[0];
-  let url = `https://api.brightsky.dev/weather?lat=${lat}&lon=${long}&date=${formattedDate}`;
+  let url 
   console.log(url)
   const urlResponse = await fetch(url);
   console.log(urlResponse)

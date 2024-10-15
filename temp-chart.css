@@ -132,7 +132,7 @@
 
 @media (max-width: 656px) { 
   .temp-chart {
-    gap: 0;
+    gap: 0.75;
     top: 50px
   }
   
