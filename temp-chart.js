@@ -33,18 +33,24 @@ function tempChart({ element, data }) {
   // Function to calculate responsive height
   function calculateHeight() {
     const viewportWidth = window.innerWidth;
-
-    // Base height of 250px when viewport is 656px
-    let height = 250;
-
-    // Adjust height when width is less than 656px, scaling down
-    if (viewportWidth < 656) {
-      const minWidth = 400; // Minimum width where height starts decreasing
-      const minHeight = 220; // Minimum height allowed
-      height = Math.max(minHeight, (viewportWidth / 656) * 250);
+  
+    // If viewport is greater than 656px, height should be 200px
+    if (viewportWidth > 656) {
+      return 200;
     }
-
-    return height;
+  
+    // Base height of 250px when viewport is exactly 656px
+    const maxHeight = 280;
+    const minHeight = 200; // Minimum height allowed
+    const minWidth = 400;  // Minimum width where height starts decreasing
+  
+    // For viewport width between 400 and 656px, scale the height between 220px and 250px
+    if (viewportWidth <= 656 && viewportWidth >= minWidth) {
+      return ((viewportWidth - minWidth) / (656 - minWidth)) * (maxHeight - minHeight) + minHeight;
+    }
+  
+    // For viewport width smaller than 400px, fix height at minHeight (220px)
+    return minHeight;
   }
 
   // Initial render
@@ -171,6 +177,8 @@ function tempChart({ element, data }) {
       (d) => x(d[0]),
       (d) => y(d[1])
     );
+    const height = calculateHeight();
+    console.log(height)
 
     // Set dimensions for y-axis and main SVG
     yAxisSvg.attr("width", noScrollWidth).attr("height", height);
