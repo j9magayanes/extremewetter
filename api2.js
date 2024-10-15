@@ -12,7 +12,7 @@ let plzData;
 
 // DOM Elements
 const modal = document.getElementById("search-page-container");
-const searchButton = document.querySelector(".search");
+const searchBar = document.querySelector(".search");
 const searchInput = document.querySelector(".search-input");
 const modalInput = document.getElementsByClassName("modal-input")[0];
 const overlay = document.getElementById("overlay");
@@ -117,11 +117,20 @@ const setupSearchForm = () => {
   });
 };
 
-// Handle Search Button Click
-searchButton.onclick = function () {
+searchBar.addEventListener("click", function () {
   modal.style.display = "flex";
-};
+  searchBar.style.zIndex = '0';
+});
 
+// Optionally, add support for touch events
+searchBar.addEventListener("touchstart", function () {
+  modal.style.display = "flex";
+  alert(modal.style.display);
+});
+
+// Make sure the button is not disabled and is properly visible
+searchBar.style.pointerEvents = "auto";
+searchBar.style.visibility = "visible";
 // Show Info Modal
 infoButton.onclick = function () {
   info.style.display = "block";
@@ -143,6 +152,7 @@ const closeInfoOverlay = () => {
 
 // Close Modal Function
 const closeModal = () => {
+  searchBar.style.zIndex = '1';
   modal.style.display = "none";
 };
 
