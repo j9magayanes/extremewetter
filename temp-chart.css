@@ -132,7 +132,7 @@
 
 @media (max-width: 656px) { 
   .temp-chart {
-    gap:  calc((2 / 656) * 100vw);
+    gap:  calc((1.5 / 656) * 100vw);
     top:  calc((65 / 656) * 100vw)
   }
   
