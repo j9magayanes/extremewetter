@@ -10,9 +10,7 @@
     <div class="search-container">
       <div class="search">
         <span class="search-input">Berlin</span>
-        <div class="vertical-line-bg">
           <div class="vertical-line"></div>
-        </div>
         <button class="search-button" id="search-button">
           <svg viewBox="0 0 57 57" fill="none" xmlns="">
             <path
@@ -20,7 +18,6 @@
               fill="white" />
           </svg>
         </button>
-      </div>
     </div>
     <div class="headline-container">
       <div class="headline">
@@ -30,23 +27,8 @@
           <span class="subline"><strong><span id="temperature"></span> </strong><span> Grad </span> <span
               id="comparison"></span></span>
         </div>
-      </div>
-    </div> 
-    <div class="card-body">
-      <div id="tempChart"></div>
-      <!-- Bottom legend-->
-      <div class="bottom-legend">
-        <div class="swatches-container">
-          <div class="swatch">
-            <div class="swatch-row">
-                <div class="swatch-red"></div>
-                <div class="swatch-label">Temperatur dieses Jahr</div>
-            </div>
-            <div class="swatch-row">
-                <div class="swatch-blue"></div>
-                <div class="swatch-label">Ø Tageshöchsttemperatur 1993-2023</div>
-            </div>
-        </div>
+        <div class="bottom-legend">
+          <div class="swatch-label">Ø 30 Tage 2024 vs. 1973-2023</div>
         </div>
         <div class="info-icon">
           <button class="info-btn" id="info-btn" aria-label="More information">
@@ -63,6 +45,16 @@
             </svg>
           </button>
         </div>
+      </div>
+    </div> 
+
+    <div class="card-body">
+      <div id="tempChart"></div>
+
+        </div>
+
+
+       
       </div>
       <!-- Modal content -->
       <div class="search-page-container" id="search-page-container">
