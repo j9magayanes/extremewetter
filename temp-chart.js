@@ -40,8 +40,8 @@ function tempChart({ element, data }) {
     }
   
     // Base height of 250px when viewport is exactly 656px
-    const maxHeight = 280;
-    const minHeight = 200; // Minimum height allowed
+    const maxHeight = 121;
+    const minHeight = 100; // Minimum height allowed
     const minWidth = 400;  // Minimum width where height starts decreasing
   
     // For viewport width between 400 and 656px, scale the height between 220px and 250px
@@ -826,7 +826,7 @@ function tempChart({ element, data }) {
 
     // Filter data for the last three months
     const filtered = data.months.filter(
-      ({ month }) => month <= currentMonth && month >= currentMonth - 3
+      ({ month }) => month <= currentMonth && month >= currentMonth -1
     );
 
     // Map the filtered data to include date objects

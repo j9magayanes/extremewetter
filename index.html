@@ -1,16 +1,19 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="index.css" />
   <link rel="stylesheet" href="temp-chart.css" />
   <link href="" rel="stylesheet" />
 </head>
+
 <body>
   <div class="card">
+    
     <div class="search-container">
       <div class="search">
         <span class="search-input">Berlin</span>
-          <div class="vertical-line"></div>
+        <div class="vertical-line"></div>
         <button class="search-button" id="search-button">
           <svg viewBox="0 0 57 57" fill="none" xmlns="">
             <path
@@ -18,130 +21,126 @@
               fill="white" />
           </svg>
         </button>
-    </div>
-    <div class="headline-container">
-      <div class="headline">
-        <div class="question">Ist das Wetter noch normmal<br/>oder schon der Klimawandel?</div>
-        <div class="today">
-          <img id="tempImage" src="" />
-          <span class="subline"><strong><span id="temperature"></span> </strong><span> Grad </span> <span
-              id="comparison"></span></span>
-        </div>
-        <div class="bottom-legend">
-          <div class="swatch-label">Ø 30 Tage 2024 vs. 1973-2023</div>
-        </div>
-        <div class="info-icon">
-          <button class="info-btn" id="info-btn" aria-label="More information">
-            <svg width="18" height="18" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M33.4995 17.0505C33.5669 25.3855 26.9252 33.503 16.9061 33.4755C7.71989 33.451 0.502575 26.1571 0.499513 17.0046C0.496451 7.72035 7.85156 0.454041 17.0286 0.499972C27.1243 0.548966 33.6404 8.80739 33.4995 17.0505ZM31.1264 16.9617C31.252 9.10135 24.5123 2.85165 17.05 2.8394C9.45915 2.83021 2.82669 9.09828 2.842 17.0138C2.85731 24.9353 9.52345 31.1759 17.1052 31.1361C24.5338 31.0993 31.2795 24.8557 31.1295 16.9586L31.1264 16.9617Z"
-                fill="#B5B5B5" />
-              <path
-                d="M15.9232 27.0359C14.1227 27.0757 12.9499 25.6182 13.3572 23.7228C13.7124 22.0815 14.1747 20.4617 14.5973 18.8357C14.827 17.9508 15.0995 17.075 15.3138 16.187C15.5037 15.3939 15.3536 15.2286 14.5024 15.1489C14.4503 15.1428 14.4013 15.1489 14.3493 15.1489C13.9604 15.1336 13.4337 15.2714 13.4337 14.6805C13.4337 14.5273 13.9635 14.2793 14.2727 14.2334C15.6844 14.0252 17.1021 13.869 18.5198 13.7006C19.316 13.6057 19.5762 13.8476 19.3833 14.6437C18.9393 16.4718 18.4341 18.2876 17.9564 20.1095C17.7114 21.0465 17.4604 21.9804 17.246 22.9236C17.145 23.3645 17.0072 23.9463 17.5492 24.1239C17.9166 24.2433 18.4341 24.1025 18.8199 23.931C19.1721 23.7718 19.4262 23.4012 19.7508 23.1593C19.8427 23.092 20.0662 23.0981 20.1642 23.1655C20.2683 23.2359 20.3142 23.4135 20.3479 23.5544C20.3693 23.6462 20.3265 23.7564 20.2928 23.8514C19.7508 25.3916 17.543 26.9992 15.9263 27.0359H15.9232Z"
-                fill="#B5B5B5" />
-              <path
-                d="M18.333 11.551C17.0409 11.5296 16.0212 10.4854 16.0518 9.21771C16.0824 7.96532 17.1756 6.92115 18.4341 6.94564C19.714 6.97014 20.6786 8.00206 20.6633 9.32182C20.6449 10.6691 19.6987 11.5755 18.333 11.551Z"
-                fill="#B5B5B5" />
-            </svg>
-          </button>
+      </div>
+
+      <div class="headline-container">
+        <div class="headline">
+          <div class="question">Ist das Wetter noch normal?</div>
+          <div class="today">
+            <img id="tempImage" src="" />
+            <span class="subline"><strong><span id="temperature"></span> </strong><span> Grad </span> <span
+                id="comparison"></span></span>
+          </div>
+          <div class="bottom-legend">
+            <div class="swatch-label">Ø 30 Tage 2024 vs. 1973-2023</div>
+          </div>
+          <div class="info-icon">
+            <button class="info-btn" id="info-btn" aria-label="More information">
+              <svg width="18" height="18" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M33.4995 17.0505C33.5669 25.3855 26.9252 33.503 16.9061 33.4755C7.71989 33.451 0.502575 26.1571 0.499513 17.0046C0.496451 7.72035 7.85156 0.454041 17.0286 0.499972C27.1243 0.548966 33.6404 8.80739 33.4995 17.0505ZM31.1264 16.9617C31.252 9.10135 24.5123 2.85165 17.05 2.8394C9.45915 2.83021 2.82669 9.09828 2.842 17.0138C2.85731 24.9353 9.52345 31.1759 17.1052 31.1361C24.5338 31.0993 31.2795 24.8557 31.1295 16.9586L31.1264 16.9617Z"
+                  fill="#B5B5B5" />
+                <path
+                  d="M15.9232 27.0359C14.1227 27.0757 12.9499 25.6182 13.3572 23.7228C13.7124 22.0815 14.1747 20.4617 14.5973 18.8357C14.827 17.9508 15.0995 17.075 15.3138 16.187C15.5037 15.3939 15.3536 15.2286 14.5024 15.1489C14.4503 15.1428 14.4013 15.1489 14.3493 15.1489C13.9604 15.1336 13.4337 15.2714 13.4337 14.6805C13.4337 14.5273 13.9635 14.2793 14.2727 14.2334C15.6844 14.0252 17.1021 13.869 18.5198 13.7006C19.316 13.6057 19.5762 13.8476 19.3833 14.6437C18.9393 16.4718 18.4341 18.2876 17.9564 20.1095C17.7114 21.0465 17.4604 21.9804 17.246 22.9236C17.145 23.3645 17.0072 23.9463 17.5492 24.1239C17.9166 24.2433 18.4341 24.1025 18.8199 23.931C19.1721 23.7718 19.4262 23.4012 19.7508 23.1593C19.8427 23.092 20.0662 23.0981 20.1642 23.1655C20.2683 23.2359 20.3142 23.4135 20.3479 23.5544C20.3693 23.6462 20.3265 23.7564 20.2928 23.8514C19.7508 25.3916 17.543 26.9992 15.9263 27.0359H15.9232Z"
+                  fill="#B5B5B5" />
+                <path
+                  d="M18.333 11.551C17.0409 11.5296 16.0212 10.4854 16.0518 9.21771C16.0824 7.96532 17.1756 6.92115 18.4341 6.94564C19.714 6.97014 20.6786 8.00206 20.6633 9.32182C20.6449 10.6691 19.6987 11.5755 18.333 11.551Z"
+                  fill="#B5B5B5" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-    </div> 
+    </div>
 
     <div class="card-body">
       <div id="tempChart"></div>
-
-        </div>
-
-
-       
-      </div>
-      <!-- Modal content -->
-      <div class="search-page-container" id="search-page-container">
-        <p class="search-page-header">Suchen Sie Ihren Standort</p>
-        <form id="city-search-form" method="GET" autocomplete="off">
-          <fieldset class="input-field-container">
-            <legend class="input-legend">PLZ / Ort</legend>
-            <div class="inner-input">
-              <img class="input-magnifying" src="./assets/magnifying_gray.svg" />
-              <input type="text" value="" 
-                name="plz-ort"   
-                id="city-search-input" 
-                class="input-field" 
-                placeholder="PLZ / Ort" 
-              />
-              <div class="close">&#x2715</div>
-            </div>
-            <div class="suggestions-wrapper">
-              <div id="suggestions"></div>
-            </div>
-            <div class="input-warning">Bitte überprüfen Sie Ihre Eingabe.</div>
-          </fieldset>
-          <div class="search-btns-container">
-            <button class="cancel-btn" type="button">ABBRECHEN</button>
-            <button type="submit" class="search-btn"  id="search-btn" type="button">SUCHEN</button>
+    </div>
+    <!-- Modal content -->
+    <div class="search-page-container" id="search-page-container">
+      <p class="search-page-header">Suchen Sie Ihren Standort</p>
+      <form id="city-search-form" method="GET" autocomplete="off">
+        <fieldset class="input-field-container">
+          <legend class="input-legend">PLZ / Ort</legend>
+          <div class="inner-input">
+            <img class="input-magnifying" src="./assets/magnifying_gray.svg" />
+            <input type="text" value="" name="plz-ort" id="city-search-input" class="input-field"
+              placeholder="PLZ / Ort" />
+            <div class="close">&#x2715</div>
           </div>
-        </form>
-      </div>
+          <div class="suggestions-wrapper">
+            <div id="suggestions"></div>
+          </div>
+          <div class="input-warning">Bitte überprüfen Sie Ihre Eingabe.</div>
+        </fieldset>
+        <div class="search-btns-container">
+          <button class="cancel-btn" type="button">ABBRECHEN</button>
+          <button type="submit" class="search-btn" id="search-btn" type="button">SUCHEN</button>
+        </div>
+      </form>
+    </div>
     <!-- Info content -->
     <div id="overlay"></div>
     <div id="info-modal" class="info">
       <div class="info-items">
         <text class="info-title">Information</text>
-        <text class="info-details">Die historischen Wetterdaten stammen aus dem Archiv des Deutschen Wetterdienstes DWD. Sie kommen von etwa 400 aktiven und über 900 nicht mehr aktiven Messstationen aus ganz Deutschland. Da nicht jede Station die kompletten historischen Daten bereitstellt, werden für den Zeitraum der letzten 100 Jahre auch Stationen in der Nähe für die Ergebnisse herangezogen.
-          <br/>
+        <text class="info-details">Die historischen Wetterdaten stammen aus dem Archiv des Deutschen Wetterdienstes DWD.
+          Sie kommen von etwa 400 aktiven und über 900 nicht mehr aktiven Messstationen aus ganz Deutschland. Da nicht
+          jede Station die kompletten historischen Daten bereitstellt, werden für den Zeitraum der letzten 100 Jahre
+          auch Stationen in der Nähe für die Ergebnisse herangezogen.
+          <br />
           Für diese Grafik [Berlin] wurden Daten der folgenden Stationen verwendet:
-          <br/>
-          <br/>
+          <br />
+          <br />
           <table>
             <thead>
-                <tr>
-                    <th>Station</th>
-                    <th>ID</th>
-                    <th>Distance (Km)</th>
-                    <th>Results</th>
-                </tr>
+              <tr>
+                <th>Station</th>
+                <th>ID</th>
+                <th>Distance (Km)</th>
+                <th>Results</th>
+              </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Berlin Brandenburg</td>
-                    <td>427</td>
-                    <td>4.0</td>
-                    <td>24644</td>
-                </tr>
-                <tr>
-                    <td>Berlin-Adlershof</td>
-                    <td>395</td>
-                    <td>4.1</td>
-                    <td>2010</td>
-                </tr>
-                <tr>
-                    <td>Berlin-Treptow</td>
-                    <td>434</td>
-                    <td>6.7</td>
-                    <td>1643</td>
-                </tr>
-                <tr>
-                    <td>Berlin-Lichterfelde (Süd)</td>
-                    <td>417</td>
-                    <td>16.3</td>
-                    <td>3623</td>
-                </tr>
-                <tr>
-                    <td>Berlin-Dahlem (LFAG)</td>
-                    <td>402</td>
-                    <td>17.2</td>
-                    <td>4217</td>
-                </tr>
-                <tr>
-                    <td>Potsdam (Säkularstation)</td>
-                    <td>3988</td>
-                    <td>32.9</td>
-                    <td>195</td>
-                </tr>
+              <tr>
+                <td>Berlin Brandenburg</td>
+                <td>427</td>
+                <td>4.0</td>
+                <td>24644</td>
+              </tr>
+              <tr>
+                <td>Berlin-Adlershof</td>
+                <td>395</td>
+                <td>4.1</td>
+                <td>2010</td>
+              </tr>
+              <tr>
+                <td>Berlin-Treptow</td>
+                <td>434</td>
+                <td>6.7</td>
+                <td>1643</td>
+              </tr>
+              <tr>
+                <td>Berlin-Lichterfelde (Süd)</td>
+                <td>417</td>
+                <td>16.3</td>
+                <td>3623</td>
+              </tr>
+              <tr>
+                <td>Berlin-Dahlem (LFAG)</td>
+                <td>402</td>
+                <td>17.2</td>
+                <td>4217</td>
+              </tr>
+              <tr>
+                <td>Potsdam (Säkularstation)</td>
+                <td>3988</td>
+                <td>32.9</td>
+                <td>195</td>
+              </tr>
             </tbody>
-        </table>
-          <br/>
+          </table>
+          <br />
         </text>
       </div>
     </div>

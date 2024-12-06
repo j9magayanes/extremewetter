@@ -63,12 +63,17 @@ body {
 }
 
 body {
-  --clr-background: var(--clr-gray-light);
   margin: 0;
   font-family: "Gotham Condensed Book";
   color: var(--clr-black);
-  background: url('./assets/bg.png') no-repeat center center;
+  background: url('./assets/bg.png');
   background-size: cover;
+  aspect-ratio: 1 / 1;
+  width: 100vw;
+  height: auto;
+  max-width: 656px;
+  max-height: 369px;
+  overflow: hidden;
 }
 
 .card {
@@ -79,18 +84,17 @@ body {
 
 .card-body {
   --padding-x: 2em;
-  --padding-y: 174px;
   --gap: 0.75em;
   padding-left: var(--padding-x);
-  padding-top: var(--padding-y);
   display: flex;
   flex-direction: column;
-  gap: var(--gap);
+  margin-top: 112.7px;
 }
 
 .search-container {
   position: relative;
   height: 61.3px;
+
 }
 
 .search {
@@ -110,7 +114,6 @@ body {
 }
 
 .search-input {
-  --input-width: 12ch;
   font-size: var(--font-size);
   line-height: 1;
   padding: var(--padding-y) var(--padding-x);
@@ -154,6 +157,7 @@ body {
 .headline-container {
   display: flex;
   flex-direction: column;
+  margin-left: 32px;
 }
 
 .headline {
@@ -161,16 +165,15 @@ body {
   z-index: 4;
   max-width: 624px;
   align-items: stretch;
-  top: 85.3px;
+
 }
 
 .question {
   --max-width: 35ch;
-  font-size: calc((64 / 992) * 100vw);
-  max-width: 624px;
-  line-height: 1;
+  font-size: calc((64 / 656) * 100vw);
+  margin-top: calc((70 / 656) * 100vw);
   color: #FFFAEC;
-  margin-inline: auto;
+  font-family: 'Gotham Condensed Bold';
 }
 
 
@@ -207,14 +210,16 @@ body {
   --icon-size: calc(var(--font-size) * 0.4);
   font-size: 48px;
   padding: var(--padding-y) var(--padding-x);
-  color: var(--clr-white);
-  background-color: var(--clr-red);
+  color: #FF7A00;
+  background-color: #FFFAEC;
+  border: solid 1.38px #FFF3D3;
   line-height: 1;
-  /* left: 50%; */
+  font-family: 'Gotham Condensed Bold';
   text-align: center;
   gap: var(--gap);
   margin-top: 76px;
   max-width: 296px;
+  border-radius: 11.01px;
 }
 
 .today > svg {
@@ -728,136 +733,12 @@ ul li {
   display: none;
 }
 
-/* @media (max-width: 586px) {
-  .layoutStyle {
-    flex-direction: column;
-  }
-  #container {
-    height: 360px;
-    max-width: 576px;
-    min-width: 360px;
-    overflow: hidden;
-  }
-
-  .search-container {
-    max-width: 360px;
-  }
-
-  #forecast-container {
-    margin-top: 25px;
-  }
-
-  #weather-video {
-    height: 100%;
-  }
-
-  .search-page-header {
-    font-size: 2.5rem;
-    width: 322px;
-  }
-
-  .search-page-container {
-    display: none;
-    height: 360px;
-    justify-content: start;
-    max-width: 576px;
-    min-width: 360px;
-    gap: 25px;
-    padding: 0 0;
-  }
-
-  .search-btns-container {
-    flex-direction: column-reverse;
-    height: auto;
-  }
-
-  #city-search-form {
-    width: 300px;
-  }
-
-  .cancel-btn,
-  .search-btn {
-    width: 300px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .input-field-container {
-    width: 300px;
-    margin-top: 10px;
-  }
-
-  .suggestions-wrapper {
-    max-height: 170px;
-  }
-
-  .search-page-header,
-  .search-btns-container,
-  .input-field.container,
-  .cancel-btn,
-  .search-btn {
-    margin-top: 20px;
-  }
-} */
-
 /* Media query for screens 656px and below */
 
-@media (max-width: 991px) {
-  .modal {
-    width: 100vw;
-  }
-
-  .modal-items {
-    margin-top: calc((15 / 992) * 100vw);
-  }
-
-  .modal-title {
-    font-size: 2.5rem;
-    width: 322px;
-  }
-
-  .modal-input {
-    width: calc((734 / 992) * 100vw);
-    height: calc((59 / 992) * 100vw);
-    margin-top: calc((30 / 992) * 100vw);
-    left: calc((33 / 992) * 100vw);
-    font-size: calc((25.32 / 992) * 100vw);
-  }
-
-  .modal-text {
-    margin-top: calc((48.47 / 992) * 100vw);
-  }
-
-  .modal-text-close {
-    width: calc((340 / 992) * 100vw);
-    height: calc((60 / 992) * 100vw);
-    margin-right: calc((54.55 / 992) * 100vw);
-  }
-
-  .modal-text-search {
-    width: calc((340 / 992) * 100vw);
-    height: calc((60 / 992) * 100vw);
-    border-radius: calc((9.99 / 992) * 100vw);
-  }
-}
 
 @media (max-width: 656px) {
-  body {
-    aspect-ratio: 1 / 1;
-    width: 100vw;
-    height: auto;
-    max-width: 656px;
-    max-height: 369px;
-    overflow: hidden;
-  }
-
   .headline {
-    top: calc((80 / 656) * 100vw);
     width: 650px;
-  }
-
-  .question {
-    font-size: calc((54 / 656) * 100vw);
   }
 
   .today {
@@ -870,34 +751,8 @@ ul li {
   }
 
   .search-input {
-    font-size: calc((78 / 656) * 100vw);
+    font-size: calc((55.7/ 656) * 100vw);
   }
-  /*
-.question{
-    left: 0; 
-    font-size:  calc((45/ 656) * 100vw);
-    position: absolute; 
-    padding-left: 0.25rem;  
-  }
-
-  .today{
-    position: absolute;
-    font-size: 50px; 
-  } 
-
-  .temp-chart {
-    gap: 0;
-    margin-top: 1rem;
-    padding-bottom: 0;
-    margin-bottom: 0;
-    scale: 0.97; 
-  } */
-
-  /* .card-body {
-    padding: calc((140 / 656) * 100vw) 3em;
-    scale: 0.98;
-    gap: 0;
-  } */
 
   .bottom-legend {
     align-items: flex-start;
