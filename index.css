@@ -204,7 +204,7 @@ body {
 }
 
 .today {
-  --font-size: calc((40 / 992) * 100vw);
+  --font-size: calc((48 / 992) * 100vw);
   --padding-x: calc((6 / 992) * 100vw);
   --padding-y: 3px;
   --icon-size: calc(var(--font-size) * 0.4);
@@ -213,13 +213,13 @@ body {
   color: #FF7A00;
   background-color: #FFFAEC;
   border: solid 1.38px #FFF3D3;
-  line-height: 1;
   font-family: 'Gotham Condensed Bold';
   text-align: center;
-  gap: var(--gap);
-  margin-top: 76px;
+  margin-top: 113px;
   max-width: 296px;
   border-radius: 11.01px;
+  line-height: 1;
+  height: 64px;
 }
 
 .today > svg {
