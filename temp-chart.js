@@ -147,11 +147,11 @@ function tempChart({ element, data }) {
       );
       const padding = (yMax - yMin) * 0.1;
       // Ensure the minimum y value does not exceed -10
-      yMin = Math.min(yMin - padding, -20
+      yMin = Math.min(yMin - padding, 10
       );
       yMax += padding;
       console.log(`${yMin},${yMax} `)
-      return [0, 50];
+      return [0, 25];
     }
     if (!!noScrollWidth) resized();
   }
@@ -192,11 +192,8 @@ function tempChart({ element, data }) {
 
   // Main render function
   function renderChart() {
-    renderYAxis();
     renderSeries();
-    renderXAxis();
     renderFocus();
-    renderButtons();
     renderPoints();
     renderTooltip();
   }
@@ -221,7 +218,7 @@ function tempChart({ element, data }) {
           .attr('width', marginRight )
       );
 
-    const ticks = y.ticks((height - marginTop - marginBottom) / 30);
+    const ticks = y.ticks(10);
 
     g.selectAll('.tick')
       .data(ticks)
@@ -248,27 +245,7 @@ function tempChart({ element, data }) {
 
   // Render series data (area and lines)
   function renderSeries() {
-    svg
-      .selectAll(".area-path-1")
-      .data([flattenedData.map((d) => [xAccessor(d), y1Accessor(d)])])
-      .join((enter) =>
-        enter
-          .append("path")
-          .attr("class", "area-path-1")
-          .attr("fill", "var(--clr-fill-series-1)")
-      )
-      .attr("d", areaGenerator);
 
-    svg
-      .selectAll(".area-path-2")
-      .data([flattenedData.map((d) => [xAccessor(d), y2Accessor(d)])])
-      .join((enter) =>
-        enter
-          .append("path")
-          .attr("class", "area-path-2")
-          .attr("fill", "var(--clr-fill-series-2)")
-      )
-      .attr("d", areaGenerator);
 
     svg
       .selectAll(".line-path-2")
@@ -278,7 +255,7 @@ function tempChart({ element, data }) {
           .append("path")
           .attr("class", "line-path-2")
           .attr("fill", "none")
-          .attr("stroke", "var(--clr-series-2)")
+          .attr("stroke", "#FF7A00")
           .attr("stroke-width", lineStrokeWidth)
       )
       .attr("d", lineGenerator);
@@ -291,7 +268,7 @@ function tempChart({ element, data }) {
           .append("path")
           .attr("class", "line-path-1")
           .attr("fill", "none")
-          .attr("stroke", "var(--clr-series-1)")
+          .attr("stroke", "white")
           .attr("stroke-width", lineStrokeWidth)
       )
       .attr("d", lineGenerator);
