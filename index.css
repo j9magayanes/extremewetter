@@ -68,6 +68,7 @@ body {
   color: var(--clr-black);
   background: url('./assets/bg.png');
   background-size: cover;
+  background-repeat: no-repeat;
   aspect-ratio: 1 / 1;
   width: 100vw;
   height: auto;
@@ -163,7 +164,7 @@ body {
 .headline {
   position: absolute;
   z-index: 4;
-  max-width: 624px;
+  max-width: 650px;
   align-items: stretch;
 
 }
@@ -205,7 +206,6 @@ body {
 
 .today {
   --font-size: calc((48 / 992) * 100vw);
-  --padding-x: calc((6 / 992) * 100vw);
   --padding-y: 3px;
   --icon-size: calc(var(--font-size) * 0.4);
   font-size: 48px;
@@ -267,8 +267,38 @@ body {
 .swatch-label {
   margin-right: 24px;
   font-size: 21px;
-  padding: 10px;
 }
+
+.info-icon {
+  position: absolute;
+  z-index: 4;
+  max-width: 624px;
+  margin-top: 298.9px;
+  margin-left: 485.5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-text {
+  color: white;
+  font-family: 'Gotham Condensed Bold';
+  font-size: 25.52px;
+  line-height: 1;
+  text-align: right; 
+  flex: 1;
+}
+
+.info-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+}
+
 
 .swatch-red,
 .swatch-blue,
@@ -452,12 +482,6 @@ body {
   font-weight: 900;
 }
 
-.info-btn {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-}
 
 .autocomplete-suggestions {
   position: absolute;
@@ -737,9 +761,6 @@ ul li {
 
 
 @media (max-width: 656px) {
-  .headline {
-    width: 650px;
-  }
 
   .today {
     font-size: calc((54 / 656) * 100vw);
