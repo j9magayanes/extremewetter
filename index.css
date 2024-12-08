@@ -193,11 +193,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 113px;
-  max-width: 300px;
+  position: absolute;
+  top:  calc(250px + (64px - ((64 / 656) * 100vw)));;
+  max-width: 320px;
   border-radius: 11.01px;
   line-height: 1;
-  height: 64px;
+  /* height: 64px; */
+  height: calc((64 / 656) * 100vw);
+  padding: calc((22 / 656) * 100vw);
+}
+
+.today > svg {
+  width: calc((20.11 / 656) * 100vw);
+  height: calc((23.57 / 656) * 100vw);
+  margin-right: 10px;
 }
 
 .subline {
@@ -232,11 +241,7 @@ body {
 }
 
 
-.today > svg {
-  width: calc((20.11 / 656) * 100vw);
-  height: calc((23.57 / 656) * 100vw);
-  margin-right: 10px;
-}
+
 
 #temperature {
   font-weight: 700;
