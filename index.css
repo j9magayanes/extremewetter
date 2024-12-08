@@ -89,21 +89,23 @@ body {
   padding-left: var(--padding-x);
   display: flex;
   flex-direction: column;
-  margin-top: 112.7px;
+  /* margin-top: 112.7px; */
+  margin-top: calc((112.7/ 656) * 100vw);
 }
 
 .search-container {
   position: relative;
-  height: 61.3px;
+  /* height: 61.3px; */
+  height: calc(( 61.3/ 656) * 100vw);
 
 }
 
 .search {
-  --font-size: 55.7px;
+  /* --font-size: 55.7px; */
   background-color: var(--clr-red);
   --padding-y: 0;
   --padding-x: 0.25em;
-  --icon-size: calc(var(--font-size) * 0.75);
+  /* --icon-size: calc(var(--font-size) * 0.75); */
   --input-width: 12ch;
   display: flex;
   align-items: center;
@@ -111,11 +113,11 @@ body {
   position: absolute;
   overflow: hidden;
   z-index: 1;
-  height: 61.3px;
+  /* height: 61.3px; */
+  height: calc((61.3/ 656) * 100vw);
 }
 
 .search-input {
-  font-size: var(--font-size);
   font-size: calc((55.7/ 656) * 100vw);
   line-height: 1;
   padding: var(--padding-y) var(--padding-x);
@@ -143,10 +145,12 @@ body {
 
 .vertical-line {
   border-left: 2px solid white;
-  height: 80%;
+  /* height: 80%; */
+  height: calc((48.75/ 656) * 100vw);
 }
 
 .search-button {
+  /* font-size: calc((37.78/ 656) * 100vw); */
   font-size: var(--font-size);
   line-height: 1;
   cursor: pointer;
@@ -223,8 +227,8 @@ body {
 
 .search-button > svg {
   display: block;
-  width: var(--icon-size);
-  height: var(--icon-size);
+  width: calc((37.78 / 656) * 100vw);
+  height: calc((37.78 / 656) * 100vw);
 }
 
 
