@@ -153,6 +153,7 @@ body {
 .headline-container {
   display: flex;
   flex-direction: column;
+  height: 10px;
   margin-left: 32px;
 }
 
@@ -160,6 +161,7 @@ body {
   position: absolute;
   z-index: 4;
   max-width: 650px;
+  height: 10px;
   align-items: stretch;
 
 }
