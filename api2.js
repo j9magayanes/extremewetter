@@ -18,6 +18,7 @@ const modalInput = document.getElementsByClassName("modal-input")[0];
 const overlay = document.getElementById("overlay");
 const info = document.getElementById("info-modal");
 const infoButton = document.getElementById("info-btn");
+const infoContainer = document.querySelector(".info-container");
 const temperature = document.getElementById("temperature");
 const comparison = document.getElementById("comparison");
 const tempImage = document.getElementById("tempImage");
@@ -26,9 +27,52 @@ const closeBtn = document.querySelector(".close");
 const cancelBtn = document.querySelector(".cancel-btn");
 const submitBtn = document.querySelector(".search-btn");
 const inputField = document.getElementById("city-search-input");
+const inputFieldContainer = document.querySelector(".input-field-container");
 const suggestionsDiv = document.getElementById("suggestions");
 const searchText = document.querySelector(".search-text");
+const closeIcon = document.getElementById("close-icon");
+const inputLegend = document.querySelector(".input-legend");
 let currentFocus = -1;
+
+function reorderBottomLegend() {
+  const bottomLegend = document.querySelector('.bottom-legend');
+  const bottomContainer = document.getElementById('bottom-legend-container');
+  const card = document.querySelector('.card');
+  if (window.innerWidth <= 656) {
+    if (bottomContainer && bottomLegend && !bottomContainer.nextElementSibling.isSameNode(bottomLegend)) {
+      bottomContainer.parentNode.insertBefore(bottomLegend, bottomContainer.nextSibling);
+    }
+  } else {
+    if (card && bottomLegend && !card.firstElementChild.isSameNode(bottomLegend)) {
+      card.insertBefore(bottomLegend, card.firstElementChild.nextSibling);
+    }
+  }
+}
+
+function showInfoIcon() {
+  const infoContainer = document.querySelector('.info-container');
+
+  if (!infoContainer) return; // Exit if .info-container is not found
+
+  if (window.innerWidth <= 656) {
+    infoContainer.classList.remove('hidden'); // Show the info container
+  } else {
+    infoContainer.classList.add('hidden'); // Hide the info container
+  }
+}
+
+// Add an event listener to handle screen resize
+window.addEventListener('resize', showInfoIcon);
+
+// Run the function initially to set the correct state
+showInfoIcon();
+
+// Call the function on initial load and on window resize
+window.addEventListener('load', reorderBottomLegend);
+window.addEventListener('resize', reorderBottomLegend);
+window.addEventListener('load', showInfoIcon);
+window.addEventListener('resize', showInfoIcon);
+
 
 // Fetch Postal Code Data
 window.addEventListener("DOMContentLoaded", async () => {
@@ -39,69 +83,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     console.error("Error fetching postal code data:", error);
   }
 });
-
-// Get historical max temperatur for today's date
-async function getMaxTemp(lat, long) {
-  let dateToday = new Date();
-  let formattedDate = dateToday.toISOString().split("T")[0];
-  let url 
-  console.log(url)
-  const urlResponse = await fetch(url);
-  console.log(urlResponse)
-  //const urlResponse = await fetch('Berlin.json');
-  if (!urlResponse.ok) {
-    throw new Error(`An error occurred: ${urlResponse.statusText}`);
-  }
-  const result = await urlResponse.json();
-
-  let maxTemperature = -Infinity;
-  let minTemperature = Infinity;
-  let sumTemperature = 0;
-  let count = 0;
-
-  const currentHour = new Date().getUTCHours();
-
-  for (let i = 0; i < result.weather.length; i++) {
-    const weatherObj = result.weather[i];
-    const hour = parseInt(weatherObj.timestamp.substr(11, 2));
-
-    const localHour = (hour + 2) % 24;
-
-    if (localHour <= currentHour + 2) {
-      const temperature = weatherObj.temperature;
-      sumTemperature += temperature;
-      count++;
-      if (temperature > maxTemperature) {
-        maxTemperature = temperature;
-      }
-      if (temperature < minTemperature) {
-        minTemperature = temperature;
-      }
-    } else {
-      break;
-    }
-  }
-
-  const avgTemperature = count > 0 ? sumTemperature / count : null;
-
-  return { maxTemperature, avgTemperature };
-}
-
-// Fetch and display comparison data
-(async () => {
-  try {
-    let avgMaxTemp = await getMaxTemp(lat, lon);
-    let difference = parseFloat(
-      avgMaxTemp.avgTemperature - avgMaxTemp.maxTemperature
-    ).toFixed(2);
-    temperature.textContent = Math.abs(difference);
-    comparison.textContent = difference > 0 ? ` ${Math.abs(difference)} wärmer` : " kälter";
-    tempImage.src = `./assets/${difference > 0 ? "increase" : "decrease"}.png`;
-  } catch (error) {
-    console.error("Error fetching temperature data:", error);
-  }
-})();
-
 
 // Setup Search Form Event Listeners
 const setupSearchForm = () => {
@@ -125,14 +106,21 @@ searchBar.addEventListener("click", function () {
 // Optionally, add support for touch events
 searchBar.addEventListener("touchstart", function () {
   modal.style.display = "flex";
-  alert(modal.style.display);
+  searchBar.style.zIndex = '0';
 });
 
 // Make sure the button is not disabled and is properly visible
 searchBar.style.pointerEvents = "auto";
 searchBar.style.visibility = "visible";
+
+
 // Show Info Modal
 infoButton.onclick = function () {
+  info.style.display = "block";
+  overlay.style.display = "block";
+};
+
+infoContainer.onclick = function () {
   info.style.display = "block";
   overlay.style.display = "block";
 };
@@ -144,6 +132,12 @@ window.onclick = function (event) {
   }
 };
 
+// Close Modal on Overlay Close Icon
+closeIcon.addEventListener("click", () => {
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("info-modal").style.display = "none";
+});
+
 // Close Info Overlay Function
 const closeInfoOverlay = () => {
   info.style.display = "none";
@@ -152,8 +146,8 @@ const closeInfoOverlay = () => {
 
 // Close Modal Function
 const closeModal = () => {
-  searchBar.style.zIndex = '1';
   modal.style.display = "none";
+  searchBar.style.zIndex = '1';
 };
 
 // Handle Form Submission
@@ -251,15 +245,44 @@ const handleInput = (event) => {
   }
 };
 
+// Handle Key Down
+const handleKeyDown = (event) => {
+  const suggestionContainers = document.querySelectorAll(
+    ".suggestion-container"
+  );
+  if (suggestionContainers.length === 0) return;
+
+  if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+    event.preventDefault();
+
+    if (event.key === "ArrowDown") {
+      currentFocus++;
+      if (currentFocus >= suggestionContainers.length) currentFocus = 0;
+    } else if (event.key === "ArrowUp") {
+      currentFocus--;
+      if (currentFocus < 0) currentFocus = suggestionContainers.length - 1;
+    }
+
+    setActive(suggestionContainers);
+  } else if (event.key === "Enter") {
+    if (currentFocus > -1) {
+      suggestionContainers[currentFocus].click();
+      document.getElementById("suggestions").innerHTML = "";
+    }
+  }
+};
+
 // Display Suggestions
 const displaySuggestions = (suggestions) => {
   suggestionsDiv.innerHTML = "";
   const warningText = document.querySelector(".input-warning");
+
   if (suggestions.length > 0) {
     console.log("with suggestions")
     submitBtn.disabled = false;
     warningText.style.display = "none";
     const ul = document.createElement("ul");
+
     suggestions.forEach((suggestion) => {
       const li = document.createElement("li");
       const container = document.createElement("div");
@@ -271,11 +294,14 @@ const displaySuggestions = (suggestions) => {
       img.classList.add("suggestion-icon");
       p.classList.add("suggestion-element");
       p.textContent = suggestion.Name;
+      inputLegend.style.color = "";
+      inputFieldContainer.style.borderColor = "";
       container.appendChild(img);
       container.appendChild(p);
       li.appendChild(container);
       ul.appendChild(li);
-
+      inputLegend.style.color = "";
+      inputFieldContainer.style.borderColor = "";
       container.setAttribute("tabindex", "-1");
       container.addEventListener("click", () => {
         inputField.value = suggestion.Name;
@@ -283,15 +309,19 @@ const displaySuggestions = (suggestions) => {
       });
     });
     suggestionsDiv.appendChild(ul);
+    document.addEventListener("keydown", handleKeyDown);
   } else {
     if (document.getElementById("city-search-input").value.length === 0) {
       warningText.style.display = "none";
       submitBtn.disabled = true;
-      console.log("without suggestions")
+      inputLegend.style.color = "";
+      inputFieldContainer.style.borderColor = "";
     } else {
+      inputLegend.style.color = "#DD0000";
+      inputFieldContainer.style.borderColor = "#DD0000";
       warningText.style.display = "block";
       submitBtn.disabled = true;
-      console.log("without suggestions1")
+
     }
   }
 };
@@ -316,7 +346,15 @@ const removeDuplicates = (data) => {
 
 // Clear Input Field Value
 const clearInput = (event) => {
+  inputField.value = "";
+  const inputField = event.target.previousElementSibling;
+  inputLegend.style.color = "";
 
+};
+
+const removeValue = (event) => {
+  const inputField = event.target.previousElementSibling;
+  inputLegend.style.color = "";
   inputField.value = "";
 };
 

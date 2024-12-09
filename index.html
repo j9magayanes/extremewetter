@@ -53,16 +53,21 @@
     <div class="card-body">
       <div id="tempChart"></div>
     </div>
-    <!-- Modal content -->
-    <div class="search-page-container" id="search-page-container">
+    
+     <!-- Modal content -->
+     <div class="search-page-container" id="search-page-container">
       <p class="search-page-header">Suchen Sie Ihren Standort</p>
       <form id="city-search-form" method="GET" autocomplete="off">
         <fieldset class="input-field-container">
           <legend class="input-legend">PLZ / Ort</legend>
           <div class="inner-input">
             <img class="input-magnifying" src="./assets/magnifying_gray.svg" />
-            <input type="text" value="" name="plz-ort" id="city-search-input" class="input-field"
-              placeholder="PLZ / Ort" />
+            <input type="text" value="" 
+              name="plz-ort"   
+              id="city-search-input" 
+              class="input-field" 
+              placeholder="PLZ / Ort" 
+            />
             <div class="close">&#x2715</div>
           </div>
           <div class="suggestions-wrapper">
@@ -72,10 +77,11 @@
         </fieldset>
         <div class="search-btns-container">
           <button class="cancel-btn" type="button">ABBRECHEN</button>
-          <button type="submit" class="search-btn" id="search-btn" type="button">SUCHEN</button>
+          <button type="submit" disabled class="search-btn"  id="search-btn" type="button">SUCHEN</button>
         </div>
       </form>
     </div>
+    
     <!-- Info content -->
   <div id="overlay"></div>
   <div id="info-modal" class="info">
