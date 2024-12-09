@@ -77,70 +77,70 @@
       </form>
     </div>
     <!-- Info content -->
-    <div id="overlay"></div>
-    <div id="info-modal" class="info">
-      <div class="info-items">
-        <text class="info-title">Information</text>
-        <text class="info-details">Die historischen Wetterdaten stammen aus dem Archiv des Deutschen Wetterdienstes DWD.
-          Sie kommen von etwa 400 aktiven und über 900 nicht mehr aktiven Messstationen aus ganz Deutschland. Da nicht
-          jede Station die kompletten historischen Daten bereitstellt, werden für den Zeitraum der letzten 100 Jahre
-          auch Stationen in der Nähe für die Ergebnisse herangezogen.
-          <br />
-          Für diese Grafik [Berlin] wurden Daten der folgenden Stationen verwendet:
-          <br />
-          <br />
-          <table>
-            <thead>
-              <tr>
-                <th>Station</th>
-                <th>ID</th>
-                <th>Distance (Km)</th>
-                <th>Results</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Berlin Brandenburg</td>
-                <td>427</td>
-                <td>4.0</td>
-                <td>24644</td>
-              </tr>
-              <tr>
-                <td>Berlin-Adlershof</td>
-                <td>395</td>
-                <td>4.1</td>
-                <td>2010</td>
-              </tr>
-              <tr>
-                <td>Berlin-Treptow</td>
-                <td>434</td>
-                <td>6.7</td>
-                <td>1643</td>
-              </tr>
-              <tr>
-                <td>Berlin-Lichterfelde (Süd)</td>
-                <td>417</td>
-                <td>16.3</td>
-                <td>3623</td>
-              </tr>
-              <tr>
-                <td>Berlin-Dahlem (LFAG)</td>
-                <td>402</td>
-                <td>17.2</td>
-                <td>4217</td>
-              </tr>
-              <tr>
-                <td>Potsdam (Säkularstation)</td>
-                <td>3988</td>
-                <td>32.9</td>
-                <td>195</td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
-        </text>
-      </div>
+  <div id="overlay"></div>
+  <div id="info-modal" class="info">
+    <svg  id="close-icon" class="close-icon" width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 13L13 1M1 1L13 13" stroke="black" stroke-opacity="0.25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      
+    <div class="info-items">
+      <text class="info-title">Information</text>
+      <text class="info-details">Die historischen Wetterdaten stammen aus dem Archiv des Deutschen Wetterdienstes DWD. Sie kommen von etwa 400 aktiven und über 900 nicht mehr aktiven Messstationen aus ganz Deutschland. Da nicht jede Station die kompletten historischen Daten bereitstellt, werden für den Zeitraum der letzten 100 Jahre auch Stationen in der Nähe für die Ergebnisse herangezogen.
+        <br/>    <br/>
+        Für diese Grafik [Berlin] wurden Daten der folgenden Stationen verwendet:
+        <br/>    <br/>
+      </text>
+      <table>
+        <colgroup>
+          <col>
+          <col>
+          <col>
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="column-header-text">WETTERSTATION</th>
+            <th class="column-header-text">ENTFERNUNG <br>VOM STADTZENTRUM</th>
+            <th class="column-header-text">ANZAHL<br> DER MESSUNGEN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><text class="column-item-text">Berlin Brandenburg</text> id: 427</td>
+            <td class="column-data-text">4,0 km</td>
+            <td class="column-data-text">24644</td>
+          </tr>
+          <tr>
+            <td><text class="column-item-text">Berlin-Adlershof</text> id: 395</td>
+            <td class="column-data-text">4,1 km</td>
+            <td class="column-data-text">2010</td>
+          </tr>
+          <tr>
+            <td><text class="column-item-text">Berlin-Treptow</text> id: 434</td>
+            <td class="column-data-text">6,7 km</td>
+            <td class="column-data-text">1643</td>
+          </tr>
+          <tr>
+            <td><text class="column-item-text">Berlin-Lichterfelde (Süd)</text> id: 417</td>
+            <td class="column-data-text">16,3 km</td>
+            <td class="column-data-text">3623</td>
+          </tr>
+          <tr>
+            <td><text class="column-item-text">Berlin-Dahlem (LFAG)</text> id: 402</td>
+            <td class="column-data-text">17,2 km</td>
+            <td class="column-data-text">4217</td>
+          </tr>
+          <tr>
+            <td><text class="column-item-text">Potsdam (Säkularstation)</text> id: 3988</td>
+            <td class="column-data-text">32,9 km</td>
+            <td class="column-data-text">195</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <br/>
+      <br/>   
     </div>
+  </div>
     <script src="d3.v7.min.js"></script>
     <script src="temp-chart.js"></script>
     <script src="index.js"></script>
