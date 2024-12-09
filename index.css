@@ -194,7 +194,7 @@ body {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top:  calc(250px + (64px - ((64 / 656) * 100vw)));;
+  top:  calc(250px + (64px - ((64 / 656) * 100vw)));
   max-width: 320px;
   border-radius: 11.01px;
   line-height: 1;
@@ -218,10 +218,31 @@ body {
   padding: var(--padding-y) var(--padding-x);
 }
 
-#tempImage {
+#temperature {
+  font-weight: 700;
+  font-family: "Gotham Condensed Bold";
+}
+
+.bottom-legend {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  color: white;
+  align-items: flex-start;
+  padding: 0;
+  gap: 1;
+  top: 318px;
+}
+
+.swatch-label {
+  margin-right: 24px;
+  font-size: 21px;
+}
+
+/* #tempImage {
   width: calc((20.11 / 656) * 100vw);
   height: calc((23.57 / 656) * 100vw);
-}
+} */
 
 .input-warning {
   position: absolute;
@@ -240,26 +261,9 @@ body {
   height: calc((37.78 / 656) * 100vw);
 }
 
-
-
-
-#temperature {
-  font-weight: 700;
-  font-family: "Gotham Condensed Bold";
-}
-
 #tempImage {
   width: 28px;
   height: 33px;
-}
-
-.bottom-legend {
-  display: flex;
-  justify-content: space-between;
-  color: white;
-  align-items: flex-start;
-  padding: 0;
-  gap: 1;
 }
 
 .swatches-container {
@@ -284,10 +288,7 @@ body {
   align-items: center;
 }
 
-.swatch-label {
-  margin-right: 24px;
-  font-size: 21px;
-}
+
 
 .info-icon {
   position: absolute;
