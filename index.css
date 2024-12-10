@@ -59,7 +59,8 @@
 
 html,
 body {
-  max-height: 369px;
+  /* max-height: 369px; */
+  height: 100vh;
 }
 
 body {
@@ -71,9 +72,9 @@ body {
   background-repeat: no-repeat;
   aspect-ratio: 1 / 1;
   width: 100vw;
-  height: auto;
+  height: 100vh; 
   max-width: 656px;
-  max-height: 369px;
+  /* max-height: 369px; */
   overflow: hidden;
 }
 
@@ -740,14 +741,23 @@ tr:nth-child(odd) {
   ;
 }
 
-@media screen and (max-width: 656px), screen and (max-height: 369px) {
+/* @media screen and (max-width: 656px)
+ {
   body {
     max-height: 369px
   }
-}
+} */
 
 
 /* Media query for screens 656px and below */
 @media (max-width: 320px) {
-
+  body {
+    height: 369px;
+  }
 }
+
+@media screen and (max-width: 656px), screen and (max-height: 656px) {
+  body {
+    max-height: 656px;
+  }
+}  
