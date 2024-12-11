@@ -138,7 +138,7 @@ body {
   font-size: var(--font-size);
   line-height: 1;
   cursor: pointer;
-  padding: var(--padding-y) var(--padding-x);
+  padding: var(--padding-y) 10px;
   background-color: var(--clr-red);
   color: var(--clr-black);
   border: none;
@@ -230,7 +230,7 @@ body {
   z-index: 4;
   max-width: 624px;
   margin-top: 298.9px;
-  margin-left:  calc((485.57 / 656) * 100vw);
+  margin-left:  calc((441.57 / 656) * 100vw);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -288,12 +288,15 @@ body {
 
 
 .search-page-header {
-  color: #000000;
+  color: #212529;
   font-family: "Gotham Condensed Bold";
-  font-size: calc((72 / 656) * 96vw);
-  margin: 0;
+  font-size: calc((47 / 656) * 96vw);
+  margin-top: 27px;
+  margin-bottom: 0;
   text-align: center;
 }
+
+
 
 .search-btns-container,
 .inputFieldContainer,
@@ -323,13 +326,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  width: 100%;
-  max-width: 734px;
-  height: 48px;
+  /* gap: 5px; */
+  width: calc((426 / 656) * 96vw);
+  height:calc((67.98/ 656) * 96vw);
   box-sizing: border-box;
-  padding: 10px 0;
-  margin-top: -15px;
+  padding: 0px 0;
+  margin-top: 13px;
 }
 
 .input-magnifying {
@@ -338,7 +340,7 @@ body {
 }
 
 .input-field {
-  width: 100%;
+  width: calc((424.36 / 656) * 100vw);
   border: none;
   outline: none;
   font-size: 1rem;
