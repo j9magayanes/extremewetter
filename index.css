@@ -296,17 +296,18 @@ body {
   text-align: center;
 }
 
-
-
-.search-btns-container,
-.inputFieldContainer,
-#citySearchForm {
-  width: 100%;
-  max-width: 734px;
+#city-search-form {
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
 }
 
-.search-btns-container,
-.inputFieldContainer {
+/* 
+.search-btns-container{
+  width: 73b4px;
+} */
+
+.search-btns-container{
   height: 48px;
 }
 
@@ -327,8 +328,8 @@ body {
   align-items: center;
   justify-content: center;
   /* gap: 5px; */
-  width: calc((426 / 656) * 96vw);
-  height:calc((67.98/ 656) * 96vw);
+  width: calc((424.36 / 656) * 100vw);
+  height:calc((67.98/ 656) * 100vw);
   box-sizing: border-box;
   padding: 0px 0;
   margin-top: 13px;
@@ -406,8 +407,8 @@ body {
   font-weight: 700;
   font-size: 1.25rem;
   padding: 0px 40.15px 0px 40.15px;
-  width: calc((546 / 656) * 96vw);
-  height: calc((87 / 656) * 96vw);
+  width: calc((424.19 / 656) * 100vw);
+  height: calc((68.37 / 656) * 100vw);
   justify-content: center;
   align-items: center;
   margin-bottom: calc((30 / 656) * 96vw);
