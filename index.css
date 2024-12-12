@@ -180,7 +180,7 @@ body {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top:  calc(250px + (64px - ((64 / 656) * 100vw)));
+  top: calc(250px + (64px - ((64 / 656) * 100vw)));
   max-width: 320px;
   border-radius: 11.01px;
   line-height: 1;
@@ -229,8 +229,8 @@ body {
   position: absolute;
   z-index: 4;
   max-width: 624px;
-  margin-top: 298.9px;
-  margin-left:  calc((441.57 / 656) * 100vw);
+  margin-top: calc(291px + (51.05px - ((51.05 / 656) * 100vw)));
+  margin-left: calc(441.57px - 0.8 * (656px - 100vw));
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -256,6 +256,12 @@ body {
   width: calc((35 / 656) * 100vw);
   height: calc((35 / 656) * 100vw);
 }
+
+.info-btn > svg {
+  width: calc((35 / 656) * 100vw);
+  height: calc((35 / 656) * 100vw);
+}
+
 /* card body */
 .card-body {
   --padding-x: 2em;
@@ -280,6 +286,7 @@ body {
   gap: 0px;
   padding: 0 0;
   align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
   padding: 0 50px;
@@ -315,7 +322,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 26px;
   flex-direction: column-reverse;
   height: auto;
 }
@@ -337,7 +344,7 @@ body {
 
 .input-magnifying {
   width: 24px;
-  margin-left: 17px;
+  /* margin-left: 22px; */
 }
 
 .input-field {
@@ -347,8 +354,8 @@ body {
   font-size: 1rem;
   background: transparent;
   font-family: "Gotham Narrow Light";
-  font-weight: 400;
-  font-size: 1.125rem;
+  font-size: 22.62px;
+  padding: 8px;
   color: #212529;
   align-items: center;
 }
@@ -363,6 +370,7 @@ body {
   z-index: 1;
   top: 0;
   gap: 5px;
+  padding: 17px 22px;
 }
 
 .input-field::placeholder {
@@ -411,7 +419,7 @@ body {
   height: calc((68.37 / 656) * 100vw);
   justify-content: center;
   align-items: center;
-  margin-bottom: calc((30 / 656) * 96vw);
+  margin-bottom: calc((17.34 / 656) * 100vw);
   outline: none;
   border: none;
 }
@@ -439,7 +447,7 @@ body {
   left: 0;
   overflow-y: scroll;
   width: 100%;
-  max-height: 75px;
+  max-height: calc((169.64 / 656) * 100vw);
   background-color: #ffffff;
   border-radius: 8px;
 }
@@ -457,16 +465,14 @@ ul {
 
 ul li {
   margin-top: 0;
-  height: 24px;
-  padding-top: 5px;
+  height: 56.55px;
+  padding: 11px 22px;
 }
 
 .suggestion-container {
   display: flex;
   align-items: center;
   height: 24px;
-  margin-top: -10px;
-  padding-left: 10px;
 }
 
 .suggestion-container:hover {
@@ -483,17 +489,16 @@ ul li {
 }
 
 .suggestion-icon {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   margin-right: 0.5rem;
 }
 
 .suggestion-element {
   font-family: "Gotham Narrow Light";
-  font-weight: 400;
   color: #495057;
-  font-size: 1.125rem;
-  padding: 5px;
+  font-size: 22.62px;
+  padding: 8px;
 }
 
 .input-warning {
@@ -528,7 +533,7 @@ ul li {
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
 }
 
