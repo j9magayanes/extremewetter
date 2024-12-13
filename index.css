@@ -1,42 +1,43 @@
 @font-face {
-  font-family: "Gotham Condensed Book";
-  src: url("./fonts/GothamCond-Book.otf") format("opentype");
+  font-family: 'Gotham Condensed Book';
+  src: url('./fonts/GothamCond-Book.otf') format("opentype");
 }
 
 @font-face {
-  font-family: "Gotham Condensed Bold";
-  src: url("./fonts/GothamCond-Bold.otf") format("opentype");
+  font-family: 'Gotham Condensed Bold';
+  src: url('./fonts/GothamCond-Bold.otf') format("opentype");
   font-weight: 700;
 }
 
 @font-face {
-  font-family: "Gotham Narrow Black";
-  src: url("./fonts/GothamXNarrow-Black-Bold.otf") format("opentype");
+  font-family: 'Gotham Condensed Black';
+  src: url('./fonts/GothamCond-Black.otf') format("opentype");
+  font-weight: 700;
 }
 
 @font-face {
-  font-family: "Gotham Narrow Light";
-  src: url("./fonts/GothamXNarrow-Light.otf") format("opentype");
+  font-family: 'Gotham XNarrow Light';
+  src: url('./fonts/GothamXNarrow-Light.otf') format("opentype");
 }
 
 @font-face {
-  font-family: "Gotham Narrow Medium";
-  src: url("./fonts/GothamXNarrow-Medium.otf") format("opentype");
+  font-family: 'Gotham XNarrow Medium';
+  src: url('./fonts/GothamXNarrow-Medium.otf') format("opentype");
 }
 
 @font-face {
-  font-family: "Gotham Narrow Book";
-  src: url("./fonts/GothamXNarrow-Book.otf") format("opentype");
+  font-family: 'Gotham XNarrow Book';
+  src: url('./fonts/GothamXNarrow-Book.otf') format("opentype");
 }
 
 @font-face {
-  font-family: 'Gotham Narrow Black';
+  font-family: 'Gotham XNarrow Black';
   src: url('./fonts/GothamXNarrow-Black-Bold.otf') format("opentype");
 }
 
 @font-face {
-  font-family: "Gotham Narrow Bold";
-  src: url("./fonts/GothamXNarrow-Bold.otf") format("opentype");
+  font-family: 'Gotham XNarrow Bold';
+  src: url('./fonts/GothamXNarrow-Bold.otf') format("opentype");
 }
 
 :root {
@@ -166,6 +167,7 @@ body {
   margin-top: calc((70 / 656) * 100vw);
   color: #FFFAEC;
   font-family: 'Gotham Condensed Bold';
+  line-height: 1
 }
 
 .today {
@@ -222,6 +224,7 @@ body {
 .swatch-label {
   margin-right: 24px;
   font-size: 21px;
+  font-family: "Gotham XNarrow Light"
 }
 
 
@@ -240,7 +243,7 @@ body {
 
 .info-text {
   color: white;
-  font-family: 'Gotham Condensed Bold';
+  font-family: 'Gotham XNarrow Medium';
   font-size:  calc((25.52 / 656) * 100vw);
   line-height: 1;
   text-align: right; 
@@ -353,7 +356,7 @@ body {
   outline: none;
   font-size: 1rem;
   background: transparent;
-  font-family: "Gotham Narrow Light";
+  font-family: "Gotham XNarrow Light";
   font-size: 22.62px;
   padding: 8px;
   color: #212529;
@@ -374,7 +377,7 @@ body {
 }
 
 .input-field::placeholder {
-  font-family: "Gotham Narrow Light";
+  font-family: "Gotham XNarrow Light";
   font-weight: 400;
   font-size: 1.125rem;
   color: #212529;
@@ -403,7 +406,7 @@ body {
   left: 10px;
   font-size: 0.75rem;
   color: #212529;
-  font-family: "Gotham Narrow Light";
+  font-family: "Gotham XNarrow Light";
   font-weight: 400;
   background: #f3f2f2;
   padding: 0 5px;
@@ -411,7 +414,7 @@ body {
 
 .cancel-btn,
 .search-btn {
-  font-family: "Gotham Narrow Medium";
+  font-family: "Gotham XNarrow Medium";
   font-weight: 700;
   font-size: 1.25rem;
   padding: 0px 40.15px 0px 40.15px;
@@ -495,7 +498,7 @@ ul li {
 }
 
 .suggestion-element {
-  font-family: "Gotham Narrow Light";
+  font-family: "Gotham XNarrow Light";
   color: #495057;
   font-size: 22.62px;
   padding: 8px;
@@ -506,7 +509,7 @@ ul li {
   top: 103%;
   left: 6%;
   color: #dd0000;
-  font-family: "Gotham Narrow Light";
+  font-family: "Gotham XNarrow Light";
   font-weight: 400;
   font-size: 1.125rem;
   display: none;
@@ -581,7 +584,7 @@ ul li {
   font-size: 21px;
   line-height: 27.3px;
   margin-top: 28px;
-  font-family: "Gotham Narrow Book";
+  font-family: "Gotham XNarrow Book";
   font-weight: 900;
 }
 
@@ -664,11 +667,11 @@ ul li {
   font-size: 21px;
   line-height: 27.3px;
   margin-top: 28px;
-  font-family: 'Gotham Narrow Book';
+  font-family: 'Gotham XNarrow Book';
 }
 
 .column-header-text, .column-item-text {
-  font-family: 'Gotham Narrow Medium';
+  font-family: 'Gotham XNarrow Medium';
 }
 
 /* table */
@@ -724,16 +727,112 @@ tr:nth-child(odd) {
 
 @media (max-width: 656px) and (min-height: 370px) and (max-height: 656px) {
   body {
-    max-height: 656px;
+    width: 100vw;
+    height: 100vw;
+  }
+  .headline-container {
+    margin-left: 43px;
   }
   .question {
     font-size: calc((118 / 656) * 96vw);
+    margin-top: calc((82/ 656)* 100vw);
   }
+  .card-body {
+    margin-top: calc((286 / 656)* 100vw);
+   }
+.today {
+  top: calc((421/ 656)* 100vw);
+  height: calc((84 / 656) * 100vw);  
+  font-size: calc((64 / 656)* 100vw);
+  max-width: 440px;
+}
+.swatch-label { 
+  font-size: calc((28/ 656)* 100vw);
+}
+.bottom-legend {
+  top: calc((517/ 656)* 100vw);
+}
+.swatch-label { 
+  font-size: calc((28/ 656)* 100vw);
+}
+.info-icon {
+  margin-top: calc((568 / 656)* 100vw);
+  margin-left: calc((144 / 656)* 100vw);
+  width: calc((433.49 / 656)* 100vw);
+}
+.info-text {
+  font-size: calc((32 / 656)* 100vw);
+  text-align: start;
+}
+.info-btn {
+  width: calc((55 / 656) * 100vw);
+  height: calc((55 / 656) * 100vw);
+}
+.info-btn > svg {
+  width: calc((55 / 656) * 100vw);
+  height: calc((55 / 656) * 100vw);
+}
 }
 
 @media (max-width: 320px) {
   body {
     height: 369px;
   }
+  /* body {
+    width: 100vw;
+    height: 100vw;
+  } */
+  .headline-container {
+    margin-left: 16px;
+  }
+  .search {
+    height: calc((41.3 / 320) * 100vw);  
+  }
+  .search-input {
+    font-size: calc((36 / 320) * 96vw);
+  }
+  .search-button > svg {
+    width: calc((25.78 / 656)* 100vw);
+    height: calc((25.78 / 656)* 100vw);
+  }
+  .question {
+    font-size: calc((48 / 320) * 96vw);
+    margin-top: calc((60/ 320)* 100vw);
+  }
+  .card-body {
+    margin-top: calc((286 / 320)* 100vw);
+   }
+.today {
+  top: calc((231/ 320)* 100vw);
+  height: calc((52 / 320) * 100vw);  
+  font-size: calc((36/ 320)* 100vw);
+  max-width: 300px;
+}
+.swatch-label { 
+  font-size: calc((18/ 320)* 100vw);
+}
+.bottom-legend {
+  top: calc((285/ 320)* 100vw);
+}
+.swatch-label { 
+  font-size: calc((16/ 320)* 100vw);
+}
+.info-icon {
+  margin-top: calc((320 / 320)* 100vw);
+  margin-left: calc((51 / 320)* 100vw);
+  width: calc((240.49 / 320)* 100vw);
+}
+.info-text {
+  font-size: calc((18 / 320)* 100vw);
+  text-align: start;
+}
+.info-btn {
+  width: calc((24.42 / 320) * 100vw);
+  height: calc((24.42 / 320) * 100vw);
+}
+.info-btn > svg {
+  width: calc((24.42 / 320) * 100vw);
+  height: calc((24.42 / 320) * 100vw);
+}
 
 }
