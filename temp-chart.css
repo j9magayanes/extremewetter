@@ -116,8 +116,8 @@
 }
 
 .point-circle {
-  stroke: var(--clr-red); 
-  stroke-width: 1.83px;
+  stroke: #FF7A00; 
+  stroke-width: 4.82px;
   z-index: 4;
 }
 

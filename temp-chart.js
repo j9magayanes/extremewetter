@@ -8,8 +8,8 @@ function tempChart({ element, data }) {
     pointsData,
     totalDays;
 
-  const focusDotSize = 4;
-  const lineStrokeWidth = 2;
+  const focusDotSize = 7;
+  const lineStrokeWidth = 3.97;
   const dayDotSize = 2;
   const dayDotsOffset = 8;
   const dayLabelsHeight = 20;
@@ -52,9 +52,38 @@ function tempChart({ element, data }) {
     return minHeight;
   }
 
+// Function to adjust properties based on screen width and height
+function getResponsiveProps() {
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  if (screenWidth <= 320) {
+    return {
+      radius: 6,
+      strokeWidth: 1,
+      color: 'red',
+    }; // Small screens
+  } 
+
+  if (screenWidth <= 656 && screenHeight >= 369) {
+    return {
+      radius: 8,
+      strokeWidth: 2,
+      color: 'blue',
+    }; // Medium screens with sufficient height
+  }
+
+  return {
+    radius: 5,
+    strokeWidth: 1.5,
+    color: 'green',
+  }; // Default for other screen sizes
+}
+
+let{ radius, strokeWidth, color } = getResponsiveProps();
+
   // Initial render
   const height = calculateHeight();
-
 
   // Formatting values for tooltip
   const valueFormat = new Intl.NumberFormat('de-DE', {
@@ -96,8 +125,6 @@ function tempChart({ element, data }) {
     .curve(d3.curveMonotoneX)
     .defined((d) => d[1] !== undefined);
   const lineGenerator = areaGenerator.lineY1();
-
-  // Clear any existing elements in the container
 
 
   // Create the main container
@@ -177,7 +204,7 @@ function tempChart({ element, data }) {
       (d) => y(d[1])
     );
     const height = calculateHeight();
-    console.log(height)
+    ({ radius, strokeWidth, color } = getResponsiveProps());
 
     // Set dimensions for y-axis and main SVG
     yAxisSvg.attr("width", noScrollWidth).attr("height", height);
@@ -574,164 +601,165 @@ function tempChart({ element, data }) {
           enter
             .append('circle')
             .attr('class', 'point-circle')
-            .attr('r', focusDotSize)
+            .attr('r',radius)
             .style('z-index', 5)
             .attr('fill', 'white')
             .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.maxMaxThisYear)})`),
         (update) => update
+          .attr('r',  getResponsiveProps().radius)
           .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.maxMaxThisYear)})`),
         (exit) => exit.remove()
       );
 
 
-    svg
-      .selectAll('.highest-temp-circle')
-      .data([highestTempPoint])
-      .join(
-        (enter) =>
-          enter
-            .append('circle')
-            .attr('class', 'lowest-temp-circle')
-            .attr('r', focusDotSize)
-            .style('z-index', 5)
-            .attr('fill', 'var(--clr-series-2)')
-            .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.avgMax)})`),
-        (update) => update
-          .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.avgMax)})`),
-        (exit) => exit.remove()
-      );
+    // svg
+    //   .selectAll('.highest-temp-circle')
+    //   .data([highestTempPoint])
+    //   .join(
+    //     (enter) =>
+    //       enter
+    //         .append('circle')
+    //         .attr('class', 'lowest-temp-circle')
+    //         .attr('r', focusDotSize)
+    //         .style('z-index', 5)
+    //         .attr('fill', 'var(--clr-series-2)')
+    //         .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.avgMax)})`),
+    //     (update) => update
+    //       .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.avgMax)})`),
+    //     (exit) => exit.remove()
+    //   );
 
-    svg
-      .selectAll('.highest-temp-circle')
-      .data([highestTempThisYearPoint])
-      .join(
-        (enter) =>
-          enter
-            .append('circle')
-            .attr('class', 'highest-temp-circle')
-            .attr('r', focusDotSize)
-            .style('z-index', 5)
-            .attr('fill', 'var(--clr-series-1)')
-            .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.maxMaxThisYear)})`),
-        (update) => update
-          .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.maxMaxThisYear)})`),
-        (exit) => exit.remove()
-      );
+    // svg
+    //   .selectAll('.highest-temp-circle')
+    //   .data([highestTempThisYearPoint])
+    //   .join(
+    //     (enter) =>
+    //       enter
+    //         .append('circle')
+    //         .attr('class', 'highest-temp-circle')
+    //         .attr('r', focusDotSize)
+    //         .style('z-index', 5)
+    //         .attr('fill', 'var(--clr-series-1)')
+    //         .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.maxMaxThisYear)})`),
+    //     (update) => update
+    //       .attr('transform', (d) => `translate(${x(d[0])}, ${y(d.data.maxMaxThisYear)})`),
+    //     (exit) => exit.remove()
+    //   );
 
     // Append text after circles
-    svg
-      .selectAll('.temp-today')
-      .data([validData]) 
-      .join(
-        (enter) =>
-          enter
-            .append('text')
-            .attr('class', 'temp-today')
-            .attr('dy', '.4em') 
-            .style('fill', 'var(--clr-series-1)')
-            .style('stroke', 'white')              
-            .style('stroke-width', 1.5)            
-            .style('paint-order', 'stroke') 
-            .text(d => `${valueFormat(
-              d.data.maxMaxThisYear
-            )}°`), 
-        (update) =>
-          update
-            .text(d => `${valueFormat(
-              d.data.maxMaxThisYear
-            )}°`) 
-      )
-      .attr('transform', (d) => `translate(${x(d[0]) + 10  }, ${y(d.data.maxMaxThisYear + 5)})`),
-      (update) => update,
-      (exit) => exit.remove()
-    svg
-    .selectAll('.text-today')
-    .data([validData]) 
-    .join(
-      (enter) =>
-        enter
-          .append('text')
-          .attr('class', 'text-today')
-          .attr('dy', '.35em')
-          .style('fill',  'var(--clr-series-1)')
-          .style('stroke', 'white')              
-          .style('stroke-width', 1.5)            
-          .style('paint-order', 'stroke')
-          .text("heute"),
-      (update) =>
-        update
-      .text("heute"), 
-    )
-    .attr('transform', (d) => `translate(${x(d[0]) + 10  }, ${y(d.data.maxMaxThisYear)})`),
-    (update) => update,
-    (exit) => exit.remove();
-        svg
-        .selectAll('.temp-avgMax')
-        .data([highestTempPoint]) 
-        .join(
-          (enter) =>
-            enter
-              .append('text')
-              .attr('class', 'temp-avgMax')
-              .attr('dy', '.35em')
-              .style('fill',  'var(--clr-series-2)')
-              .text(d =>`${valueFormat(
-                d.data.avgMax
-              )}°`), 
-          (update) =>
-            update
-              .text(d =>`${valueFormat(
-                d.data.avgMax
-              )}°`)
-        )
-        .attr('transform', (d) => {
-          const xPos = x(d[0]) 
-          const yPos = y(d.data.avgMax);
-          const textWidth = 30;  
-          const svgWidth = scrollContainer.node().clientWidth; 
-          const availableSpace = svgWidth - xPos;
-          const adjustedX = availableSpace < textWidth ? x(d[0]) - textWidth - 6 : xPos + 10;
+    // svg
+    //   .selectAll('.temp-today')
+    //   .data([validData]) 
+    //   .join(
+    //     (enter) =>
+    //       enter
+    //         .append('text')
+    //         .attr('class', 'temp-today')
+    //         .attr('dy', '.4em') 
+    //         .style('fill', 'var(--clr-series-1)')
+    //         .style('stroke', 'white')              
+    //         .style('stroke-width', 1.5)            
+    //         .style('paint-order', 'stroke') 
+    //         .text(d => `${valueFormat(
+    //           d.data.maxMaxThisYear
+    //         )}°`), 
+    //     (update) =>
+    //       update
+    //         .text(d => `${valueFormat(
+    //           d.data.maxMaxThisYear
+    //         )}°`) 
+    //   )
+    //   .attr('transform', (d) => `translate(${x(d[0]) + 10  }, ${y(d.data.maxMaxThisYear + 5)})`),
+    //   (update) => update,
+    //   (exit) => exit.remove()
+    // svg
+    // .selectAll('.text-today')
+    // .data([validData]) 
+    // .join(
+    //   (enter) =>
+    //     enter
+    //       .append('text')
+    //       .attr('class', 'text-today')
+    //       .attr('dy', '.35em')
+    //       .style('fill',  'var(--clr-series-1)')
+    //       .style('stroke', 'white')              
+    //       .style('stroke-width', 1.5)            
+    //       .style('paint-order', 'stroke')
+    //       .text("heute"),
+    //   (update) =>
+    //     update
+    //   .text("heute"), 
+    // )
+    // .attr('transform', (d) => `translate(${x(d[0]) + 10  }, ${y(d.data.maxMaxThisYear)})`),
+    // (update) => update,
+    // (exit) => exit.remove();
+      //   svg
+      //   .selectAll('.temp-avgMax')
+      //   .data([highestTempPoint]) 
+      //   .join(
+      //     (enter) =>
+      //       enter
+      //         .append('text')
+      //         .attr('class', 'temp-avgMax')
+      //         .attr('dy', '.35em')
+      //         .style('fill',  'var(--clr-series-2)')
+      //         .text(d =>`${valueFormat(
+      //           d.data.avgMax
+      //         )}°`), 
+      //     (update) =>
+      //       update
+      //         .text(d =>`${valueFormat(
+      //           d.data.avgMax
+      //         )}°`)
+      //   )
+      //   .attr('transform', (d) => {
+      //     const xPos = x(d[0]) 
+      //     const yPos = y(d.data.avgMax);
+      //     const textWidth = 30;  
+      //     const svgWidth = scrollContainer.node().clientWidth; 
+      //     const availableSpace = svgWidth - xPos;
+      //     const adjustedX = availableSpace < textWidth ? x(d[0]) - textWidth - 6 : xPos + 10;
       
-          return `translate(${adjustedX }, ${yPos})`;
-      }),
-        (update) => update,
-        (exit) => exit.remove();
-        svg
-        .selectAll('.temp-maxMaxThisYear')
-        .data([highestTempThisYearPoint]) 
-        .join(
-          (enter) =>
-            enter
-              .append('text')
-              .attr('class', 'temp-maxMaxThisYear')
-              .attr('dy', '.35em') 
-              .style('fill',  'var(--clr-series-1)')
-              .text(d =>`${valueFormat(
-              d.data.maxMaxThisYear
-            )}°`),
-          (update) =>
-            update
-              .text(d =>`${valueFormat(
-                d.data.maxMaxThisYear
-              )}°`)
-        )
-        .attr('transform', (d) => {
-          const xPos = x(d[0]);  
-          const yPos = y(d.data.maxMaxThisYear
-          );
+      //     return `translate(${adjustedX }, ${yPos})`;
+      // }),
+      //   (update) => update,
+      //   (exit) => exit.remove();
+        // svg
+        // .selectAll('.temp-maxMaxThisYear')
+        // .data([highestTempThisYearPoint]) 
+        // .join(
+        //   (enter) =>
+        //     enter
+        //       .append('text')
+        //       .attr('class', 'temp-maxMaxThisYear')
+        //       .attr('dy', '.35em') 
+        //       .style('fill',  'var(--clr-series-1)')
+        //       .text(d =>`${valueFormat(
+        //       d.data.maxMaxThisYear
+        //     )}°`),
+        //   (update) =>
+        //     update
+        //       .text(d =>`${valueFormat(
+        //         d.data.maxMaxThisYear
+        //       )}°`)
+        // )
+      //   .attr('transform', (d) => {
+      //     const xPos = x(d[0]);  
+      //     const yPos = y(d.data.maxMaxThisYear
+      //     );
       
-          // Calculate available space on the right
-          const textWidth = 30;  
-          const svgWidth = scrollContainer.node().clientWidth; 
-          const availableSpace = svgWidth - xPos;
+      //     // Calculate available space on the right
+      //     const textWidth = 30;  
+      //     const svgWidth = scrollContainer.node().clientWidth; 
+      //     const availableSpace = svgWidth - xPos;
       
-          // Move text to the left if not enough space on the right
-          const adjustedX = availableSpace < textWidth ? x(d[0]) - textWidth - 6 : xPos + 10;
+      //     // Move text to the left if not enough space on the right
+      //     const adjustedX = availableSpace < textWidth ? x(d[0]) - textWidth - 6 : xPos + 10;
       
-          return `translate(${adjustedX }, ${yPos})`;
-      }),
-        (update) => update,
-        (exit) => exit.remove();
+      //     return `translate(${adjustedX }, ${yPos})`;
+      // }),
+      //   (update) => update,
+      //   (exit) => exit.remove();
   
      
   }
@@ -825,7 +853,7 @@ function tempChart({ element, data }) {
 
     // Filter data for the last three months
     const filtered = data.months.filter(
-      ({ month }) => month <= currentMonth && month >= currentMonth -1
+      ({ month }) => month == currentMonth 
     );
 
     // Map the filtered data to include date objects
