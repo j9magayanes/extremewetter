@@ -36,13 +36,12 @@ function tempChart({ element, data }) {
   
     // If viewport is greater than 656px, height should be 200px
     if (viewportWidth > 656) {
-      return 200;
+      return 300;
     }
   
-    // Base height of 250px when viewport is exactly 656px
-    const maxHeight = 121;
-    const minHeight = 100; // Minimum height allowed
-    const minWidth = 400;  // Minimum width where height starts decreasing
+    const maxHeight = 300;
+    const minHeight = 300; // Minimum height allowed
+    const minWidth = 300;  // Minimum width where height starts decreasing
   
     // For viewport width between 400 and 656px, scale the height between 220px and 250px
     if (viewportWidth <= 656 && viewportWidth >= minWidth) {

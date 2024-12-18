@@ -223,17 +223,16 @@ body {
 
 .swatch-label {
   margin-right: 24px;
-  font-size: 21px;
+  font-size: calc((21 / 656) * 116vw);
   font-family: "Gotham XNarrow Light"
 }
-
 
 .info-icon {
   position: absolute;
   z-index: 4;
-  max-width: 624px;
+  width: calc((213 / 656) * 98vw);
   margin-top: calc(291px + (51.05px - ((51.05 / 656) * 100vw)));
-  margin-left: calc(441.57px - 0.8 * (656px - 100vw));
+  right: 32px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -272,7 +271,7 @@ body {
   padding-left: var(--padding-x);
   display: flex;
   flex-direction: column;
-  margin-top: calc((112.7/ 656) * 100vw);
+  margin-top: calc((-45.3/ 656) * 100vw);
 }
 
 /* search page */
@@ -735,10 +734,10 @@ tr:nth-child(odd) {
   }
   .question {
     font-size: calc((118 / 656) * 96vw);
-    margin-top: calc((82/ 656)* 100vw);
+    margin-top: calc((76/ 656)* 100vw);
   }
   .card-body {
-    margin-top: calc((286 / 656)* 100vw);
+    margin-top: calc((122 / 656)* 100vw);
    }
 .today {
   top: calc((421/ 656)* 100vw);
@@ -800,7 +799,7 @@ tr:nth-child(odd) {
     margin-top: calc((60/ 320)* 100vw);
   }
   .card-body {
-    margin-top: calc((286 / 320)* 100vw);
+    margin-top: calc((-25 / 320)* 100vw);
    }
 .today {
   top: calc((231/ 320)* 100vw);
